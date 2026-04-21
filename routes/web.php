@@ -39,6 +39,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'total_items' => \App\Models\Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
                 ->where('type', 'item')->count(),
             'total_guests' => \App\Models\Guest::whereHas('event', fn($q) => $q->where('user_id', $userId))->count(),
+            'cash_contributors_count' => \App\Models\Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
+                ->where('type', 'cash')->count(),
         ];
 
         return Inertia::render('Dashboard', [

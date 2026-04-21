@@ -31,11 +31,15 @@ class ReportController extends Controller
                 ->sum('amount');
         }
 
+        $cashContributors = Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
+            ->where('type', 'cash')->count();
+
         return Inertia::render('Reports', [
             'stats' => [
                 'total_cash' => $totalCash,
                 'total_items' => $totalItems,
                 'total_guests' => $totalGuests,
+                'cash_contributors_count' => $cashContributors,
             ],
             'by_relation' => $byRelation,
         ]);
