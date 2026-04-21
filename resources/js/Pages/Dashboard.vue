@@ -129,7 +129,7 @@ const formatDate = (d) => {
                 <table class="etable">
                     <thead>
                         <tr>
-                            <th>NAME</th><th>TYPE</th><th>GIFT / AMOUNT</th><th>RELATION</th><th>DATE</th><th></th>
+                            <th>NAME</th><th>TYPE</th><th>GIFT / AMOUNT</th><th>RELATION</th><th>ADDRESS</th><th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -153,7 +153,6 @@ const formatDate = (d) => {
                                 <span v-else class="ival">{{ g.item_name }}</span>
                             </td>
                             <td><span class="rbadge">{{ g.guest?.relation }}</span></td>
-                            <td class="dcell">{{ formatDate(g.created_at) }}</td>
                             <td>
                                 <button @click="deleteEntry(g.guest_id)" class="dbtn" title="Delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
