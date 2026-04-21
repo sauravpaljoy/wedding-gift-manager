@@ -8,6 +8,7 @@ class Guest extends Model
 {
     protected $fillable = ['event_id', 'name', 'phone', 'address', 'relation'];
 
+
     public function event()
     {
         return $this->belongsTo(Event::class);

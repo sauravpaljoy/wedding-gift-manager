@@ -1,317 +1,95 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm, router } from '@inertiajs/vue3';
+import ShagunLayout from '@/Layouts/ShagunLayout.vue';
+import { Head, router } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
-const props = defineProps({
-    guests: Array,
-    events: Array,
-});
+const props = defineProps({ guests: Array });
 
-// State for editing
-const isEditing = ref(false);
-const editingGuestId = ref(null);
-
-// Form for adding/editing entries
-const form = useForm({
-    event_id: '',
-    guest_name: '',
-    phone: '',
-    address: '',
-    relation: 'Friend',
-    type: 'cash',
-    amount: '',
-    item_name: '',
-    note: '',
-});
-
-const submit = () => {
-    if (isEditing.value) {
-        form.patch(route('guests.update', editingGuestId.value), {
-            onSuccess: () => {
-                resetForm();
-            },
-        });
-    } else {
-        form.post(route('gifts.store'), {
-            onSuccess: () => {
-                resetForm();
-            },
-        });
-    }
-};
-
-const editGuest = (guest) => {
-    isEditing.value = true;
-    editingGuestId.value = guest.id;
-    const gift = guest.gifts[0] || {};
-    
-    form.event_id = guest.event_id;
-    form.guest_name = guest.name;
-    form.phone = guest.phone || '';
-    form.address = guest.address || '';
-    form.relation = guest.relation || 'Friend';
-    form.type = gift.type || 'cash';
-    form.amount = gift.amount || '';
-    form.item_name = gift.item_name || '';
-    form.note = gift.note || '';
-
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
-const deleteGuest = (id) => {
-    if (confirm('Are you sure you want to delete this entry?')) {
-        router.delete(route('guests.destroy', id));
-    }
-};
-
-const resetForm = () => {
-    isEditing.value = false;
-    editingGuestId.value = null;
-    form.reset();
-};
-
-// Search and Filter State
 const search = ref('');
-const filterType = ref('All');
-const filterRelation = ref('All');
-const sortBy = ref('newest');
 
-// Computed filtered guests
 const filteredGuests = computed(() => {
-    let result = [...props.guests];
-
-    // Search
-    if (search.value) {
-        result = result.filter(g => 
-            g.name.toLowerCase().includes(search.value.toLowerCase()) || 
-            (g.phone && g.phone.includes(search.value))
-        );
-    }
-
-    // Filter Type
-    if (filterType.value !== 'All') {
-        result = result.filter(g => g.gifts[0]?.type === filterType.value.toLowerCase());
-    }
-
-    // Filter Relation
-    if (filterRelation.value !== 'All') {
-        result = result.filter(g => g.relation === filterRelation.value);
-    }
-
-    // Sort
-    if (sortBy.value === 'highest') {
-        result.sort((a, b) => (parseFloat(b.gifts[0]?.amount || 0)) - (parseFloat(a.gifts[0]?.amount || 0)));
-    } else if (sortBy.value === 'newest') {
-        result.sort((a, b) => b.id - a.id);
-    }
-
-    return result;
+    if (!search.value) return props.guests || [];
+    return (props.guests || []).filter(g =>
+        g.name?.toLowerCase().includes(search.value.toLowerCase()) ||
+        g.address?.toLowerCase().includes(search.value.toLowerCase())
+    );
 });
 
-// Auto Calculations
-const totalCash = computed(() => {
-    return props.guests.reduce((sum, g) => {
-        const gift = g.gifts[0];
-        return gift?.type === 'cash' ? sum + parseFloat(gift.amount || 0) : sum;
-    }, 0);
-});
-
-const totalGifts = computed(() => {
-    return props.guests.filter(g => g.gifts[0]?.type === 'item').length;
-});
+const totalCash = (guest) => (guest.gifts || []).filter(g => g.type === 'cash').reduce((s, g) => s + parseFloat(g.amount || 0), 0);
+const totalItems = (guest) => (guest.gifts || []).filter(g => g.type === 'item').length;
+const entryCount = (guest) => (guest.gifts || []).length;
 </script>
 
 <template>
-    <Head title="Guest Management" />
+    <Head title="Guests – Shagun" />
+    <ShagunLayout>
+        <template #title>Guests</template>
+        <template #subtitle>Every beautiful soul who blessed you</template>
 
-    <AuthenticatedLayout>
-        <template #header>
-            <div class="flex justify-between items-center">
-                <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    📋 Guest Management
-                </h2>
-                <div class="space-x-2">
-                    <button @click="window.print()" class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition">📄 Export PDF</button>
-                    <a :href="route('export.csv')" class="inline-block px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition">📊 Export Excel</a>
+        <div class="card">
+            <div class="gh">
+                <div>
+                    <div class="gt">Guest List</div>
+                    <div class="gs">{{ filteredGuests.length }} unique guests</div>
+                </div>
+                <div class="sw">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="si"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input v-model="search" type="text" placeholder="Search guest..." class="sinput" />
                 </div>
             </div>
-        </template>
 
-        <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 space-y-6">
-                
-                <!-- 📊 Summary Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border-b-4 border-blue-500">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <div class="text-sm font-medium text-gray-500 uppercase">Total Guests</div>
-                                <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ guests.length }}</div>
-                            </div>
-                            <div class="p-3 bg-blue-100 dark:bg-blue-900 rounded-full text-blue-600">👥</div>
-                        </div>
+            <div class="guest-grid">
+                <div v-for="guest in filteredGuests" :key="guest.id" class="guest-card">
+                    <div class="gc-header">
+                        <div class="gc-name">{{ guest.name }}</div>
+                        <span class="rel-badge">{{ guest.relation }}</span>
                     </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border-b-4 border-emerald-500">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <div class="text-sm font-medium text-gray-500 uppercase">Total Cash</div>
-                                <div class="text-3xl font-bold text-gray-900 dark:text-white">৳ {{ totalCash.toLocaleString() }}</div>
-                            </div>
-                            <div class="p-3 bg-emerald-100 dark:bg-emerald-900 rounded-full text-emerald-600">💰</div>
-                        </div>
+                    <div class="gc-addr">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        {{ guest.address || 'Unknown' }}
                     </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border-b-4 border-amber-500">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <div class="text-sm font-medium text-gray-500 uppercase">Total Gifts</div>
-                                <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ totalGifts }}</div>
-                            </div>
-                            <div class="p-3 bg-amber-100 dark:bg-amber-900 rounded-full text-amber-600">🎁</div>
+                    <div class="gc-stats">
+                        <div class="gstat">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                            <span class="cash-val">৳ {{ totalCash(guest).toLocaleString() }}</span>
                         </div>
+                        <div class="gstat">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/></svg>
+                            <span class="item-val">{{ totalItems(guest) }}</span>
+                        </div>
+                        <div class="gentry">{{ entryCount(guest) }} entries</div>
                     </div>
                 </div>
-
-                <!-- 1. Guest Entry Form -->
-                <div :class="isEditing ? 'border-2 border-indigo-500' : ''" class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm transition-all">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold flex items-center">
-                            <span class="mr-2">{{ isEditing ? '✏️ Edit Guest Entry' : '✍️ Add Guest Entry' }}</span>
-                        </h3>
-                        <button v-if="isEditing" @click="resetForm" class="text-sm text-gray-500 hover:text-gray-700">Cancel Edit</button>
-                    </div>
-                    <form @submit.prevent="submit" class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div class="col-span-1 md:col-span-1">
-                            <label class="text-xs font-bold uppercase text-gray-500">Event</label>
-                            <select v-model="form.event_id" class="mt-1 block w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600" required>
-                                <option value="" disabled>Select Event</option>
-                                <option v-for="event in events" :key="event.id" :value="event.id">{{ event.event_name }}</option>
-                            </select>
-                        </div>
-                        <div class="col-span-1 md:col-span-1">
-                            <label class="text-xs font-bold uppercase text-gray-500">Name (নাম)</label>
-                            <input v-model="form.guest_name" type="text" placeholder="Guest Name" class="mt-1 block w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600" required />
-                        </div>
-                        <div class="col-span-1 md:col-span-1">
-                            <label class="text-xs font-bold uppercase text-gray-500">Phone</label>
-                            <input v-model="form.phone" type="text" placeholder="017xxxxxxxx" class="mt-1 block w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
-                        </div>
-                        <div class="col-span-1 md:col-span-1">
-                            <label class="text-xs font-bold uppercase text-gray-500">Relation</label>
-                            <select v-model="form.relation" class="mt-1 block w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600">
-                                <option>Friend</option>
-                                <option>Family</option>
-                                <option>Relative</option>
-                            </select>
-                        </div>
-                        
-                        <div class="col-span-1 md:col-span-1">
-                            <label class="text-xs font-bold uppercase text-gray-500">Gift Type</label>
-                            <select v-model="form.type" class="mt-1 block w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600">
-                                <option value="cash">Cash</option>
-                                <option value="item">Gift</option>
-                            </select>
-                        </div>
-
-                        <div v-if="form.type === 'cash'" class="col-span-1 md:col-span-1">
-                            <label class="text-xs font-bold uppercase text-gray-500">Amount (৳)</label>
-                            <input v-model="form.amount" type="number" placeholder="৳" class="mt-1 block w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
-                        </div>
-                        <div v-else class="col-span-1 md:col-span-1">
-                            <label class="text-xs font-bold uppercase text-gray-500">Gift Name</label>
-                            <input v-model="form.item_name" type="text" placeholder="e.g. Dinner Set" class="mt-1 block w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
-                        </div>
-
-                        <div class="col-span-1 md:col-span-1">
-                            <label class="text-xs font-bold uppercase text-gray-500">Note</label>
-                            <input v-model="form.note" type="text" placeholder="Optional" class="mt-1 block w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
-                        </div>
-
-                        <div class="col-span-1 flex items-end">
-                            <button type="submit" :disabled="form.processing" class="w-full py-2.5 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 transition disabled:opacity-50">
-                                {{ isEditing ? '💾 Update Entry' : '➕ Add Entry' }}
-                            </button>
-                        </div>
-                    </form>
+                <div v-if="!filteredGuests.length" class="empty">
+                    <div style="font-size:32px;margin-bottom:8px">👥</div>
+                    No guests found
                 </div>
-
-                <!-- 🔍 Smart Filter + Search -->
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm flex flex-wrap gap-4 items-center">
-                    <div class="flex-grow min-w-[200px]">
-                        <input v-model="search" type="text" placeholder="🔎 Search Name / Phone..." class="w-full rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm font-bold text-gray-500">🎯 Filter:</span>
-                        <select v-model="filterType" class="text-sm rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600">
-                            <option>All</option>
-                            <option>Cash</option>
-                            <option>Gift</option>
-                        </select>
-                        <select v-model="filterRelation" class="text-sm rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600">
-                            <option>All</option>
-                            <option>Family</option>
-                            <option>Friend</option>
-                            <option>Relative</option>
-                        </select>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm font-bold text-gray-500">💰 Sort:</span>
-                        <select v-model="sortBy" class="text-sm rounded-lg border-gray-300 dark:bg-gray-700 dark:border-gray-600">
-                            <option value="newest">Newest First</option>
-                            <option value="highest">Highest Amount ↓</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 📋 Data Table -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
-                    <table class="w-full text-left">
-                        <thead class="bg-gray-50 dark:bg-gray-900 border-b dark:border-gray-700">
-                            <tr>
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-500">Name</th>
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-500">Phone / Relation</th>
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-500">Gift Type</th>
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-500">Amount / Gift</th>
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-500">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y dark:divide-gray-700">
-                            <tr v-for="guest in filteredGuests" :key="guest.id" class="hover:bg-gray-50 dark:hover:bg-gray-750 transition">
-                                <td class="py-4 px-6">
-                                    <div class="font-bold text-gray-900 dark:text-white">{{ guest.name }}</div>
-                                    <div class="text-xs text-gray-400">{{ guest.event?.event_name }}</div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <div class="text-sm text-gray-600 dark:text-gray-300">{{ guest.phone || 'N/A' }}</div>
-                                    <div class="text-xs text-indigo-500 font-semibold">{{ guest.relation }}</div>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span :class="guest.gifts[0]?.type === 'cash' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'" class="px-2 py-1 rounded text-[10px] font-bold uppercase">
-                                        {{ guest.gifts[0]?.type }}
-                                    </span>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <div v-if="guest.gifts[0]?.type === 'cash'" class="font-bold text-gray-900 dark:text-white">৳ {{ guest.gifts[0]?.amount }}</div>
-                                    <div v-else class="font-bold text-gray-900 dark:text-white">{{ guest.gifts[0]?.item_name }}</div>
-                                    <div class="text-[10px] italic text-gray-400">{{ guest.gifts[0]?.note }}</div>
-                                </td>
-                                <td class="py-4 px-6 space-x-3">
-                                    <button @click="editGuest(guest)" class="text-blue-500 hover:text-blue-700 transition">✏️</button>
-                                    <button @click="deleteGuest(guest.id)" class="text-red-500 hover:text-red-700 transition">🗑</button>
-                                </td>
-                            </tr>
-                            <tr v-if="filteredGuests.length === 0">
-                                <td colspan="5" class="py-20 text-center text-gray-500">
-                                    <div class="text-4xl mb-4">🏜</div>
-                                    No entries match your search or filters.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
             </div>
         </div>
-    </AuthenticatedLayout>
+    </ShagunLayout>
 </template>
+
+<style scoped>
+.card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);}
+.gh{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
+.gt{font-size:20px;font-weight:700;color:#1e1b4b;}
+.gs{font-size:13px;color:#9ca3af;margin-top:2px;}
+.sw{position:relative;}
+.si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9ca3af;}
+.sinput{padding:9px 12px 9px 36px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;width:220px;}
+.sinput:focus{border-color:#a855f7;}
+.guest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.guest-card{background:white;border:1.5px solid #f3e8ff;border-radius:14px;padding:18px;transition:all .2s;cursor:default;}
+.guest-card:hover{border-color:#d8b4fe;box-shadow:0 4px 16px rgba(168,85,247,.1);transform:translateY(-2px);}
+.gc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.gc-name{font-size:16px;font-weight:700;color:#1e1b4b;}
+.rel-badge{display:inline-block;padding:3px 10px;border-radius:20px;background:#f5f3ff;color:#7c3aed;font-size:11px;font-weight:600;}
+.gc-addr{display:flex;align-items:center;gap:5px;font-size:12px;color:#9ca3af;margin-bottom:14px;}
+.gc-stats{display:flex;align-items:center;gap:16px;padding-top:14px;border-top:1px solid #f3f4f6;}
+.gstat{display:flex;align-items:center;gap:5px;}
+.cash-val{font-size:13px;font-weight:700;color:#059669;}
+.item-val{font-size:13px;font-weight:700;color:#d97706;}
+.gentry{font-size:12px;color:#9ca3af;margin-left:auto;}
+.empty{grid-column:1/-1;text-align:center;padding:48px;color:#9ca3af;}
+@media(max-width:640px){.sinput{width:160px;}}
+</style>
