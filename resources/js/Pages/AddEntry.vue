@@ -53,6 +53,7 @@ const filteredGifts = computed(() => {
     return r;
 });
 const fmt = (d) => { const dt = new Date(d); return dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})+', '+dt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true}); };
+const downloadPdf = () => { window.print(); };
 </script>
 
 <template>
@@ -91,8 +92,16 @@ const fmt = (d) => { const dt = new Date(d); return dt.toLocaleDateString('en-GB
             </form>
         </div>
         <div class="card mt">
-            <div class="rt">Recent Entries</div>
-            <div class="rs">{{ (recent_gifts||[]).length }} of {{ (recent_gifts||[]).length }} entries</div>
+            <div class="rh no-print">
+                <div>
+                    <div class="rt">Recent Entries</div>
+                    <div class="rs">{{ (recent_gifts||[]).length }} of {{ (recent_gifts||[]).length }} entries</div>
+                </div>
+                <button @click="downloadPdf" class="pdf-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+                    Download PDF
+                </button>
+            </div>
             <div class="filters">
                 <div class="sw"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sic"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input v-model="search" type="text" placeholder="Search name or address..." class="si-input" /></div>
                 <select v-model="filterType" class="fsel"><option>All types</option><option>cash</option><option>item</option></select>
@@ -175,5 +184,15 @@ const fmt = (d) => { const dt = new Date(d); return dt.toLocaleDateString('en-GB
 .ebtn:hover{color:#a855f7;background:#f5f3ff;border-color:#d8b4fe;transform:translateY(-1px);box-shadow:0 4px 6px -1px rgba(168,85,247,0.1);}
 .dbtn:hover{color:#ef4444;background:#fef2f2;border-color:#fecaca;transform:translateY(-1px);box-shadow:0 4px 6px -1px rgba(239,68,68,0.1);}
 .ee{text-align:center;padding:48px 16px !important;color:#9ca3af;}
+.rh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.pdf-btn{display:flex;align-items:center;gap:8px;padding:9px 18px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;border:none;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(168,85,247,0.2);}
+.pdf-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(168,85,247,0.3);}
+
+@media print {
+    .no-print, .shagun-sidebar, .shagun-header, .filters, .action-cell, .shagun-footer, .card:first-of-type { display: none !important; }
+    .shagun-main { margin-left: 0 !important; }
+    .card, .ga { box-shadow: none !important; border: 1px solid #eee !important; }
+    body { background: white !important; }
+}
 @media(max-width:640px){.fg{grid-template-columns:1fr;}.qh{flex-direction:column;}}
 </style>
