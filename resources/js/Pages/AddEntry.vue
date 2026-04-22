@@ -56,7 +56,7 @@ const fmt = (d) => { const dt = new Date(d); return dt.toLocaleDateString('en-GB
 </script>
 
 <template>
-    <Head title="Add Entry – Shagun" />
+    <Head title="Add Entry – SP Tech BD" />
     <ShagunLayout>
         <template #title>Add Entry</template>
         <template #subtitle>Quick event-mode entry — press Enter to fly through fields</template>

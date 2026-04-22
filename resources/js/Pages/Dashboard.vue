@@ -80,7 +80,7 @@ const formatDate = (d) => {
 </script>
 
 <template>
-    <Head title="Dashboard – Shagun" />
+    <Head title="Dashboard – SP Tech BD" />
     <ShagunLayout>
         <template #title>Dashboard</template>
         <template #subtitle>Track every guest, gift and blessing 🌸</template>

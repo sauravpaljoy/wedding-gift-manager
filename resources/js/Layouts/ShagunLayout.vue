@@ -37,14 +37,12 @@ function isActive(routeName) {
         <aside :class="['shagun-sidebar', { 'sidebar-open': sidebarOpen }]">
             <!-- Logo -->
             <div class="sidebar-logo">
-                <div class="logo-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
-                    </svg>
+                <div class="logo-circle-sm">
+                    <span>SP</span>
                 </div>
                 <div class="logo-text">
-                    <div class="logo-name">Shagun</div>
-                    <div class="logo-tagline">GIFT TRACKER</div>
+                    <div class="logo-name-gradient">Tech BD</div>
+                    <div class="logo-tagline">WEDDING MANAGER</div>
                 </div>
             </div>
 
@@ -110,7 +108,7 @@ function isActive(routeName) {
 
             <!-- Footer -->
             <footer class="shagun-footer">
-                Made with <span style="color: #e879a0">♥</span> for your special day
+                &copy; SP Tech BD 2026. All Rights Reserved. Developed by <a href="https://sauravpal.xyz/" target="_blank" class="footer-link">Saurav pal</a>
             </footer>
         </div>
     </div>
@@ -156,31 +154,36 @@ function isActive(routeName) {
     border-bottom: 1px solid #f3e8ff;
 }
 
-.logo-icon {
-    width: 40px;
-    height: 40px;
+.logo-circle-sm {
+    width: 36px;
+    height: 36px;
     background: linear-gradient(135deg, #a855f7, #ec4899);
-    border-radius: 10px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
+    font-weight: 800;
+    font-size: 14px;
     flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
 }
 
-.logo-name {
+.logo-name-gradient {
     font-size: 18px;
-    font-weight: 700;
-    color: #1e1b4b;
-    line-height: 1;
+    font-weight: 800;
+    background: linear-gradient(135deg, #7c3aed, #db2777);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
 }
 
 .logo-tagline {
-    font-size: 9px;
-    font-weight: 600;
-    color: #a855f7;
-    letter-spacing: 1.5px;
-    margin-top: 2px;
+    font-size: 8px;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: 1px;
+    margin-top: 1px;
 }
 
 .nav-label {
@@ -342,10 +345,22 @@ function isActive(routeName) {
 /* ─── Footer ─── */
 .shagun-footer {
     text-align: center;
-    padding: 16px;
-    font-size: 13px;
+    padding: 20px;
+    font-size: 12px;
     color: #9ca3af;
     border-top: 1px solid rgba(243, 232, 255, 0.6);
+}
+
+.footer-link {
+    color: #a855f7;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-link:hover {
+    color: #ec4899;
+    text-decoration: underline;
 }
 
 /* ─── Mobile ─── */

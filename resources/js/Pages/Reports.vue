@@ -7,7 +7,7 @@ const exportCsv = () => { window.location.href = route('export.csv'); };
 const relations = computed(() => props.by_relation || {});
 </script>
 <template>
-    <Head title="Reports – Shagun" />
+    <Head title="Reports – SP Tech BD" />
     <ShagunLayout>
         <template #title>Reports</template>
         <template #subtitle>Insights &amp; exports for your celebration</template>

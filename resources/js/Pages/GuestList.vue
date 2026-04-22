@@ -21,7 +21,7 @@ const entryCount = (guest) => (guest.gifts || []).length;
 </script>
 
 <template>
-    <Head title="Guests – Shagun" />
+    <Head title="Guests – SP Tech BD" />
     <ShagunLayout>
         <template #title>Guests</template>
         <template #subtitle>Every beautiful soul who blessed you</template>

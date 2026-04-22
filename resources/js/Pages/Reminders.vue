@@ -8,7 +8,7 @@ const deleteReminder = (id) => { if (confirm('Delete?')) router.delete(route('re
 const fmt = (d) => d ? new Date(d).toLocaleDateString('en-BD',{day:'2-digit',month:'short',year:'numeric'}) : '';
 </script>
 <template>
-    <Head title="Reminders – Shagun" />
+    <Head title="Reminders – SP Tech BD" />
     <ShagunLayout>
         <template #title>Reminders</template>
         <template #subtitle>Thank-yous, follow-ups &amp; to-dos</template>
