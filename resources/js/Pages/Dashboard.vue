@@ -77,6 +77,10 @@ const formatDate = (d) => {
     const date = new Date(d);
     return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) + ', ' + date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
 };
+
+const downloadPdf = () => {
+    window.print();
+};
 </script>
 
 <template>
@@ -105,7 +109,7 @@ const formatDate = (d) => {
             </div>
         </div>
 
-        <div class="quick-card">
+        <div class="quick-card no-print">
             <div class="qh">
                 <div class="qh-left">
                     <span style="font-size:20px">⚡</span>
@@ -160,13 +164,17 @@ const formatDate = (d) => {
         </div>
 
         <div class="recent-card">
-            <div class="rh">
+            <div class="rh no-print">
                 <div>
                     <div class="rt">Recent Entries</div>
                     <div class="rs">{{ filteredGifts.length }} of {{ (recent_gifts||[]).length }} entries</div>
                 </div>
+                <button @click="downloadPdf" class="pdf-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+                    Download PDF
+                </button>
             </div>
-            <div class="filters">
+            <div class="filters no-print">
                 <div class="sw">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="si"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     <input v-model="search" type="text" placeholder="Search name or address..." class="si-input" />
@@ -177,13 +185,12 @@ const formatDate = (d) => {
                 <select v-model="filterRelation" class="fsel">
                     <option>All relations</option><option>Family</option><option>Relative</option><option>Friend</option><option>Colleague</option>
                 </select>
-                <select class="fsel"><option>Latest entry</option><option>Highest amount</option></select>
             </div>
             <div style="overflow-x:auto">
                 <table class="etable">
                     <thead>
                         <tr>
-                            <th>NAME</th><th>TYPE</th><th>GIFT / AMOUNT</th><th>RELATION</th><th>ADDRESS</th><th style="text-align:right">ACTION</th>
+                            <th>NAME</th><th>TYPE</th><th>GIFT / AMOUNT</th><th>RELATION</th><th>ADDRESS</th><th style="text-align:right" class="no-print">ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -205,7 +212,7 @@ const formatDate = (d) => {
                             </td>
                             <td><span class="rbadge">{{ g.guest?.relation }}</span></td>
                             <td class="daddr">{{ g.guest?.address || '—' }}</td>
-                            <td style="text-align:right">
+                            <td style="text-align:right" class="no-print">
                                 <div class="action-cell">
                                     <button @click="editEntry(g)" class="ebtn" title="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -252,8 +259,8 @@ const formatDate = (d) => {
 .fl{font-size:13px;font-weight:600;color:#374151;}
 .finput{padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;color:#1e1b4b;outline:none;transition:border-color .2s;background:white;}
 .finput:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.1);}
-.save-btn{padding:11px 28px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(168,85,247,.3);}
-.save-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 16px rgba(168,85,247,.4);}
+.save-btn{padding:11px 28px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(168,85,247,0.3);}
+.save-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 16px rgba(168,85,247,0.4);}
 .save-btn:disabled{opacity:.6;cursor:not-allowed;}
 .cancel-btn{padding:10px 20px;background:#f3f4f6;color:#4b5563;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;}
 .cancel-btn:hover{background:#e5e7eb;}
@@ -289,6 +296,15 @@ const formatDate = (d) => {
 .dbtn, .ebtn{border:none;background:transparent;color:#d1d5db;cursor:pointer;padding:6px;border-radius:8px;transition:all .2s;display:flex;align-items:center;}
 .ebtn:hover{color:#a855f7;background:#f5f3ff;}
 .dbtn:hover{color:#ef4444;background:#fef2f2;}
+.pdf-btn{display:flex;align-items:center;gap:8px;padding:9px 18px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;border:none;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(168,85,247,0.2);}
+.pdf-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(168,85,247,0.3);}
+
+@media print {
+    .no-print, .shagun-sidebar, .shagun-header, .filters, .action-cell, .shagun-footer, .quick-card { display: none !important; }
+    .shagun-main { margin-left: 0 !important; }
+    .recent-card, .stat-card { box-shadow: none !important; border: 1px solid #eee !important; }
+    body { background: white !important; }
+}
 .eempty{text-align:center;padding:48px 16px !important;color:#9ca3af;}
 @media(max-width:640px){.fg{grid-template-columns:1fr;}.qh{flex-direction:column;}}
 </style>

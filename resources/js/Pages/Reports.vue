@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/vue3';
 import { computed } from 'vue';
 const props = defineProps({ stats: Object, by_relation: Object, gifts: Array });
 const exportCsv = () => { window.location.href = route('export.csv'); };
+const downloadPdf = () => { window.print(); };
 const relations = computed(() => props.by_relation || {});
 </script>
 <template>
@@ -32,17 +33,25 @@ const relations = computed(() => props.by_relation || {});
            
         </div>
         <!-- Export -->
-        <div class="card mt">
-            <div class="eh">
+        <div class="card mt no-print">
+            <div style="display:flex;justify-content:space-between;align-items:center">
                 <div>
                     <div class="et">Export Data</div>
-                    <div class="es">Download everything as CSV</div>
+                    <div class="es">Download your data for offline use</div>
                 </div>
-                <button @click="exportCsv" class="exp-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Export CSV
-                </button>
+                <div style="display:flex;gap:10px">
+                    <button @click="exportCsv" class="export-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Export CSV
+                    </button>
+                    <button @click="downloadPdf" class="pdf-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+                        Download PDF
+                    </button>
+                </div>
             </div>
+        </div>
+        <div class="card mt">
             <div class="rel-grid">
                 <div v-for="(amount, rel) in relations" :key="rel" class="rel-card">
                     <div class="rn">{{ rel }}</div>
@@ -76,10 +85,13 @@ const relations = computed(() => props.by_relation || {});
 .si{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);}
 .mt{margin-top:20px;}
-.eh{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .et{font-size:18px;font-weight:700;color:#1e1b4b;}
 .es{font-size:13px;color:#9ca3af;margin-top:2px;}
-.exp-btn{display:flex;align-items:center;gap:8px;padding:10px 20px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(168,85,247,.3);}
+.export-btn, .pdf-btn{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:none;}
+.export-btn{background:#f3f4f6;color:#374151;}
+.export-btn:hover{background:#e5e7eb;}
+.pdf-btn{background:linear-gradient(135deg,#a855f7,#ec4899);color:white;box-shadow:0 4px 12px rgba(168,85,247,0.2);}
+.pdf-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(168,85,247,0.3);}
 .rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
 .rel-card{background:#fdf4ff;border-radius:12px;padding:14px 16px;border:1px solid #f3e8ff;}
 .rn{font-size:13px;color:#6b7280;margin-bottom:4px;}

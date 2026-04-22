@@ -111,10 +111,10 @@ const fmt = (d) => { const dt = new Date(d); return dt.toLocaleDateString('en-GB
                             <td style="text-align:right">
                                 <div class="action-cell">
                                     <button @click="editEntry(g)" class="ebtn" title="Edit">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                     </button>
                                     <button @click="deleteEntry(g.guest_id)" class="dbtn" title="Delete">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
                                     </button>
                                 </div>
                             </td>
@@ -170,10 +170,10 @@ const fmt = (d) => { const dt = new Date(d); return dt.toLocaleDateString('en-GB
 .iv{font-weight:600;color:#d97706;}
 .rb{display:inline-block;padding:3px 10px;border-radius:20px;background:#f3f4f6;font-size:12px;color:#4b5563;font-weight:500;}
 .daddr{color:#6b7280;font-size:13px;}
-.action-cell{display:flex;align-items:center;justify-content:flex-end;gap:8px;}
-.dbtn, .ebtn{border:none;background:transparent;color:#d1d5db;cursor:pointer;padding:6px;border-radius:8px;transition:all .2s;display:flex;align-items:center;}
-.ebtn:hover{color:#a855f7;background:#f5f3ff;}
-.dbtn:hover{color:#ef4444;background:#fef2f2;}
+.action-cell{display:flex;align-items:center;justify-content:flex-end;gap:10px;}
+.dbtn, .ebtn{border:1px solid #e2e8f0;background:white;color:#64748b;cursor:pointer;padding:8px;border-radius:10px;transition:all .2s;display:flex;align-items:center;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.ebtn:hover{color:#a855f7;background:#f5f3ff;border-color:#d8b4fe;transform:translateY(-1px);box-shadow:0 4px 6px -1px rgba(168,85,247,0.1);}
+.dbtn:hover{color:#ef4444;background:#fef2f2;border-color:#fecaca;transform:translateY(-1px);box-shadow:0 4px 6px -1px rgba(239,68,68,0.1);}
 .ee{text-align:center;padding:48px 16px !important;color:#9ca3af;}
 @media(max-width:640px){.fg{grid-template-columns:1fr;}.qh{flex-direction:column;}}
 </style>
