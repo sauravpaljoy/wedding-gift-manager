@@ -19,7 +19,7 @@ const updatePw = () => { pwForm.put(route('password.update'), { onSuccess: () =>
         <template #subtitle>Manage your account and preferences</template>
         <!-- Profile -->
         <div class="card">
-            <div class="st">Profile Information</div>
+            <div class="st">Profile </div>
             <div class="ss">Update your account details</div>
             <form @submit.prevent="submit" class="sform">
                 <div class="fg">
