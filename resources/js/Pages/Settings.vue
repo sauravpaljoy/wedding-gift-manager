@@ -15,7 +15,7 @@ const updatePw = () => { pwForm.put(route('password.update'), { onSuccess: () =>
 <template>
     <Head title="Settings – WeddingGift" />
     <ShagunLayout>
-        <template #title>Settings</template>
+        <template #title>Settings Information</template>
         <template #subtitle>Manage your account and preferences</template>
         <!-- Profile -->
         <div class="card">
