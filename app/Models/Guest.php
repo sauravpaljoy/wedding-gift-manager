@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Guest extends Model
 {
-    protected $fillable = ['event_id', 'name', 'phone', 'address', 'relation'];
+    protected $fillable = ['user_id', 'name', 'phone', 'address', 'relation'];
 
-
-    public function event()
+    public function user()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(User::class);
     }
 
     public function gifts()
@@ -19,4 +18,3 @@ class Guest extends Model
         return $this->hasMany(Gift::class);
     }
 }
-

@@ -4,6 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\GiftController;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\ReminderController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SettingsController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -14,33 +19,19 @@ Route::get('/', function () {
     ]);
 });
 
-use App\Http\Controllers\GiftController;
-use App\Http\Controllers\ExportController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\ReminderController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\SettingsController;
-
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // ─── Dashboard ───────────────────────────────────────────────
     Route::get('/dashboard', function () {
-        $userId = auth()->id();
+        $user = auth()->user();
 
-        $recent_gifts = \App\Models\Gift::with('guest')
-            ->whereHas('event', fn($q) => $q->where('user_id', $userId))
-            ->latest()
-            ->take(20)
-            ->get();
+        $recent_gifts = $user->gifts()->with('guest')->latest()->take(20)->get();
 
         $stats = [
-            'total_cash' => \App\Models\Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
-                ->where('type', 'cash')->sum('amount'),
-            'total_items' => \App\Models\Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
-                ->where('type', 'item')->count(),
-            'total_guests' => \App\Models\Guest::whereHas('event', fn($q) => $q->where('user_id', $userId))->count(),
-            'cash_contributors_count' => \App\Models\Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
-                ->where('type', 'cash')->count(),
+            'total_cash' => $user->gifts()->where('type', 'cash')->sum('amount'),
+            'total_items' => $user->gifts()->where('type', 'item')->count(),
+            'total_guests' => $user->guests()->count(),
+            'cash_contributors_count' => $user->gifts()->where('type', 'cash')->count(),
         ];
 
         return Inertia::render('Dashboard', [
@@ -51,21 +42,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // ─── Guests ──────────────────────────────────────────────────
     Route::get('/guests', function () {
-        $userId = auth()->id();
         return Inertia::render('GuestList', [
-            'guests' => \App\Models\Guest::with(['event', 'gifts'])
-                ->whereHas('event', fn($q) => $q->where('user_id', $userId))
-                ->get(),
+            'guests' => auth()->user()->guests()->with('gifts')->get(),
         ]);
     })->name('guests.index');
 
     // ─── Add Entry ───────────────────────────────────────────────
     Route::get('/add-entry', function () {
-        $userId = auth()->id();
         return Inertia::render('AddEntry', [
-            'recent_gifts' => \App\Models\Gift::with('guest')
-                ->whereHas('event', fn($q) => $q->where('user_id', $userId))
-                ->latest()->take(20)->get(),
+            'recent_gifts' => auth()->user()->gifts()->with('guest')->latest()->take(20)->get(),
         ]);
     })->name('gifts.create');
 
@@ -87,18 +72,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/guests/{guest}', [GiftController::class, 'update'])->name('guests.update');
     Route::delete('/guests/{guest}', [GiftController::class, 'destroy'])->name('guests.destroy');
 
-    // ─── Events ──────────────────────────────────────────────────
-    Route::get('/events', [EventController::class, 'index'])->name('events.index');
-    Route::post('/events', [EventController::class, 'store'])->name('events.store');
-
     // ─── Event Mode (legacy) ─────────────────────────────────────
     Route::get('/event-mode', function () {
-        $userId = auth()->id();
         return Inertia::render('EventMode', [
-            'events' => \App\Models\Event::all(),
-            'recent_gifts' => \App\Models\Gift::with('guest')
-                ->whereHas('event', fn($q) => $q->where('user_id', $userId))
-                ->latest()->take(5)->get(),
+            'recent_gifts' => auth()->user()->gifts()->with('guest')->latest()->take(5)->get(),
         ]);
     })->name('event-mode');
 

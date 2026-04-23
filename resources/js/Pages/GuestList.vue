@@ -1,5 +1,5 @@
 <script setup>
-import ShagunLayout from '@/Layouts/ShagunLayout.vue';
+import SPTechBDLayout from '@/Layouts/SPTechBDLayout.vue';
 import { Head, router } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
@@ -22,7 +22,7 @@ const entryCount = (guest) => (guest.gifts || []).length;
 
 <template>
     <Head title="Guests – SP Tech BD" />
-    <ShagunLayout>
+    <SPTechBDLayout>
         <template #title>Guests</template>
         <template #subtitle>Every beautiful soul who blessed you</template>
 
@@ -66,7 +66,7 @@ const entryCount = (guest) => (guest.gifts || []).length;
                 </div>
             </div>
         </div>
-    </ShagunLayout>
+    </SPTechBDLayout>
 </template>
 
 <style scoped>

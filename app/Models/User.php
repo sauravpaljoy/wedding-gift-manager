@@ -21,9 +21,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
         'wedding_name',
         'wedding_date',
+        'plan',
+        'trial_ends_at',
     ];
 
     /**
@@ -47,5 +50,19 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function guests()
+    {
+        return $this->hasMany(Guest::class);
+    }
+
+    public function gifts()
+    {
+        return $this->hasManyThrough(Gift::class, Guest::class);
+    }
+
+    public function reminders()
+    {
+        return $this->hasMany(Reminder::class);
     }
 }

@@ -1,20 +1,27 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
+
+defineProps({
+    maxWidth: {
+        type: String,
+        default: 'sm:max-w-md',
+    },
+});
 </script>
 
 <template>
     <div
-        class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-gray-900"
+        class="flex min-h-screen flex-col items-center bg-[#f9fafb] px-4 py-8 sm:justify-center sm:px-0 sm:py-0"
     >
-        <div>
+        <div class="mb-6 sm:mb-8">
             <Link href="/">
-                <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
+                <ApplicationLogo class="w-auto h-12 sm:h-16" />
             </Link>
         </div>
 
         <div
-            class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg dark:bg-gray-800"
+            :class="['w-full bg-white px-6 py-8 sm:px-10 shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-gray-100 rounded-2xl sm:rounded-3xl', maxWidth]"
         >
             <slot />
         </div>

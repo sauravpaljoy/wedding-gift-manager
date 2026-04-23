@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('gifts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('guest_id')->constrained()->onDelete('cascade');
-            $table->foreignId('event_id')->constrained()->onDelete('cascade'); // দ্রুত রিপোর্ট পাওয়ার জন্য
             $table->enum('type', ['cash', 'item']);
-            $table->decimal('amount', 12, 2)->nullable(); // যদি নগদ টাকা হয়
-            $table->string('item_name')->nullable(); // যদি গিফট আইটেম হয় (e.g. ওভেন)
+            $table->decimal('amount', 12, 2)->nullable();
+            $table->string('item_name')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });

@@ -1,5 +1,5 @@
 <script setup>
-import ShagunLayout from '@/Layouts/ShagunLayout.vue';
+import SPTechBDLayout from '@/Layouts/SPTechBDLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { computed } from 'vue';
 const props = defineProps({ stats: Object, by_relation: Object, gifts: Array });
@@ -9,7 +9,7 @@ const relations = computed(() => props.by_relation || {});
 </script>
 <template>
     <Head title="Reports – SP Tech BD" />
-    <ShagunLayout>
+    <SPTechBDLayout>
         <template #title>Reports</template>
         <template #subtitle>Insights &amp; exports for your celebration</template>
         <!-- Summary Cards -->
@@ -74,7 +74,7 @@ const relations = computed(() => props.by_relation || {});
             </div>
             <div v-else class="empty">No data yet to display analytics.</div>
         </div>
-    </ShagunLayout>
+    </SPTechBDLayout>
 </template>
 <style scoped>
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}

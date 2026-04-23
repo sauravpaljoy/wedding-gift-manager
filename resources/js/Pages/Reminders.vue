@@ -1,5 +1,5 @@
 <script setup>
-import ShagunLayout from '@/Layouts/ShagunLayout.vue';
+import SPTechBDLayout from '@/Layouts/SPTechBDLayout.vue';
 import { Head, useForm, router } from '@inertiajs/vue3';
 const props = defineProps({ reminders: Array });
 const form = useForm({ text: '', due_date: '' });
@@ -9,7 +9,7 @@ const fmt = (d) => d ? new Date(d).toLocaleDateString('en-BD',{day:'2-digit',mon
 </script>
 <template>
     <Head title="Reminders – SP Tech BD" />
-    <ShagunLayout>
+    <SPTechBDLayout>
         <template #title>Reminders</template>
         <template #subtitle>Thank-yous, follow-ups &amp; to-dos</template>
         <div class="card">
@@ -42,7 +42,7 @@ const fmt = (d) => d ? new Date(d).toLocaleDateString('en-BD',{day:'2-digit',mon
                 <div style="margin-top:8px">No reminders yet</div>
             </div>
         </div>
-    </ShagunLayout>
+    </SPTechBDLayout>
 </template>
 <style scoped>
 .card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);}

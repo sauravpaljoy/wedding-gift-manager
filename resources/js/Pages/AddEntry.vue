@@ -1,5 +1,5 @@
 <script setup>
-import ShagunLayout from '@/Layouts/ShagunLayout.vue';
+import SPTechBDLayout from '@/Layouts/SPTechBDLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 const props = defineProps({ recent_gifts: Array });
@@ -58,7 +58,7 @@ const downloadPdf = () => { window.print(); };
 
 <template>
     <Head title="Add Entry – SP Tech BD" />
-    <ShagunLayout>
+    <SPTechBDLayout>
         <template #title>Add Entry</template>
         <template #subtitle>Quick event-mode entry — press Enter to fly through fields</template>
         <div class="card">
@@ -133,7 +133,7 @@ const downloadPdf = () => { window.print(); };
                 </table>
             </div>
         </div>
-    </ShagunLayout>
+    </SPTechBDLayout>
 </template>
 
 <style scoped>
@@ -142,9 +142,12 @@ const downloadPdf = () => { window.print(); };
 .qh{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
 .qt{font-size:18px;font-weight:700;color:#1e1b4b;}
 .qs{font-size:13px;color:#9ca3af;margin-top:2px;}
-.tb{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;border:1.5px solid #e5e7eb;background:white;color:#6b7280;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;}
+.tb{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;border:1.5px solid #e5e7eb;background:white;color:#6b7280;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;flex:1;justify-content:center;}
 .tb-on{background:#f5f3ff;border-color:#a855f7;color:#7c3aed;font-weight:600;}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fg{display:grid;grid-template-columns:1fr;gap:12px;}
+@media (min-width: 640px) {
+    .fg { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
 .fi{display:flex;flex-direction:column;gap:6px;}
 .fl{font-size:13px;font-weight:600;color:#374151;}
 .finput{padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;color:#1e1b4b;outline:none;transition:border-color .2s;background:white;}
@@ -189,10 +192,26 @@ const downloadPdf = () => { window.print(); };
 .pdf-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(168,85,247,0.3);}
 
 @media print {
-    .no-print, .shagun-sidebar, .shagun-header, .filters, .action-cell, .shagun-footer, .card:first-of-type { display: none !important; }
-    .shagun-main { margin-left: 0 !important; }
+    .no-print, .sptechbd-sidebar, .sptechbd-header, .filters, .action-cell, .sptechbd-footer, .card:first-of-type { display: none !important; }
+    .sptechbd-main { margin-left: 0 !important; }
     .card, .ga { box-shadow: none !important; border: 1px solid #eee !important; }
     body { background: white !important; }
 }
-@media(max-width:640px){.fg{grid-template-columns:1fr;}.qh{flex-direction:column;}}
+@media(max-width:768px){
+    .card { padding: 16px; border-radius: 12px; }
+    .qh { gap: 16px; flex-direction: column; }
+    .finput { padding: 12px; font-size: 14px; }
+    .save-btn { width: 100%; padding: 12px; }
+    .rh { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .pdf-btn { width: 100%; justify-content: center; }
+    .filters { gap: 8px; }
+    .sw { min-width: 100%; }
+    .fsel { flex: 1; font-size: 12px; }
+    .et thead { display: none; }
+    .er { display: block; padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+    .et td { display: block; padding: 4px 0; border: none; }
+    .et td:last-child { text-align: left !important; margin-top: 8px; }
+    .action-cell { justify-content: flex-start; }
+    .daddr { margin-left: 46px; }
+}
 </style>

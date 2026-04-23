@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->string('phone')->nullable();
             $table->string('address')->nullable();
+            $table->string('relation')->nullable(); // Family, Friend, etc.
             $table->timestamps();
         });
     }

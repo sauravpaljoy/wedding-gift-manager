@@ -1,5 +1,5 @@
 <script setup>
-import ShagunLayout from '@/Layouts/ShagunLayout.vue';
+import SPTechBDLayout from '@/Layouts/SPTechBDLayout.vue';
 import { Head, useForm, router } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 
@@ -85,7 +85,7 @@ const downloadPdf = () => {
 
 <template>
     <Head title="Dashboard – SP Tech BD" />
-    <ShagunLayout>
+    <SPTechBDLayout>
         <template #title>Dashboard</template>
         <template #subtitle>Track every guest, gift and blessing 🌸</template>
         
@@ -205,31 +205,53 @@ const downloadPdf = () => {
                 </table>
             </div>
         </div>
-    </ShagunLayout>
+    </SPTechBDLayout>
 </template>
 
 <style scoped>
 .quick-card,.card{background:white;border-radius:24px;padding:28px;box-shadow:0 10px 40px rgba(168,85,247,.08);border:1px solid rgba(243,232,255,.8);position:relative;overflow:hidden;}
 .quick-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#a855f7,#ec4899);}
 
-.mb{margin-bottom:24px;}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
-.stat-card{background:white;border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);display:flex;align-items:center;justify-content:space-between;gap:12px;transition:transform .2s;}
+.mb{margin-bottom:20px;}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media (min-width: 1024px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+}
+.stat-card{background:white;border-radius:16px;padding:16px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);display:flex;flex-direction:column;align-items:flex-start;gap:12px;transition:transform .2s;}
+@media (min-width: 640px) {
+    .stat-card { flex-direction: row; align-items: center; justify-content: space-between; padding: 20px; }
+}
+.stat-card:hover{transform:translateY(-2px);}
 .stat-card:hover{transform:translateY(-2px);}
 
-.sl{font-size:11px;font-weight:700;color:#9ca3af;letter-spacing:.8px;margin-bottom:4px;}
-.sv{font-size:26px;font-weight:800;color:var(--c);line-height:1;margin-top:2px;}
-.sd{font-size:12px;color:#9ca3af;font-weight:500;margin-top:4px;}
-.si{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 10px rgba(0,0,0,0.02);}
+.sl{font-size:10px;font-weight:800;color:#9ca3af;letter-spacing:1px;margin-bottom:2px;}
+.sv{font-size:20px;font-weight:800;color:var(--c);line-height:1.1;margin-top:2px;}
+@media (min-width: 640px) {
+    .sv { font-size: 26px; }
+}
+.sd{font-size:11px;color:#9ca3af;font-weight:600;margin-top:2px;}
+.si{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 10px rgba(0,0,0,0.02);}
+@media (min-width: 640px) {
+    .si { width: 52px; height: 52px; border-radius: 14px; }
+}
 
 .card{margin-top:24px;}
 .qh{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:16px;}
 .qh-left{display:flex;align-items:center;gap:14px;}
-.pulse-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 16px rgba(168,85,247,0.2);animation:pulse 2s infinite;}
+.pulse-icon{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 16px rgba(168,85,247,0.2);animation:pulse 2s infinite;}
+@media (min-width: 640px) {
+    .pulse-icon { width: 48px; height: 48px; border-radius: 14px; }
+}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(168,85,247,0.4);}70%{box-shadow:0 0 0 10px rgba(168,85,247,0);}100%{box-shadow:0 0 0 0 rgba(168,85,247,0);}}
 
-.qt{font-size:28px;font-weight:800;color:#1e1b4b;letter-spacing:-0.8px;}
-.qs{font-size:16px;color:#64748b;margin-top:4px;font-weight:500;}
+.qt{font-size:22px;font-weight:800;color:#1e1b4b;letter-spacing:-0.5px;}
+@media (min-width: 640px) {
+    .qt { font-size: 28px; }
+}
+.qs{font-size:13px;color:#64748b;margin-top:2px;font-weight:600;}
+@media (min-width: 640px) {
+    .qs { font-size: 16px; }
+}
 
 .type-toggle{display:flex;gap:10px;background:#f8fafc;padding:5px;border-radius:12px;border:1px solid #f1f5f9;}
 .tb{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;border:none;background:transparent;color:#64748b;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
@@ -287,11 +309,33 @@ const downloadPdf = () => {
 .pdf-btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(168,85,247,0.3);}
 
 @media print {
-    .no-print, .shagun-sidebar, .shagun-header, .filters, .action-cell, .shagun-footer, .quick-card { display: none !important; }
-    .shagun-main { margin-left: 0 !important; }
+    .no-print, .sptechbd-sidebar, .sptechbd-header, .filters, .action-cell, .sptechbd-footer, .quick-card { display: none !important; }
+    .sptechbd-main { margin-left: 0 !important; }
     .card, .ga { box-shadow: none !important; border: 1px solid #eee !important; }
     body { background: white !important; }
 }
 .ee{text-align:center;padding:60px 20px !important;color:#9ca3af;}
-@media(max-width:640px){.fg{grid-template-columns:1fr;}.qh{flex-direction:column;align-items:flex-start;}}
+@media(max-width:768px){
+    .quick-card, .card { padding: 16px; border-radius: 16px; }
+    .fg { grid-template-columns: 1fr; gap: 12px; }
+    .finput { padding: 12px 14px; font-size: 14px; }
+    .save-btn { width: 100%; padding: 12px; }
+    .qh { gap: 12px; }
+    .type-toggle { width: 100%; }
+    .tb { flex: 1; justify-content: center; }
+    .filters { gap: 8px; }
+    .sw { min-width: 100%; }
+    .fsel { flex: 1; font-size: 12px; padding: 10px; }
+    .rh { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .pdf-btn { width: 100%; justify-content: center; }
+    .et thead { display: none; }
+    .er { display: block; padding: 16px 0; border-bottom: 1.5px solid #f1f5f9; }
+    .et td { display: block; padding: 4px 0; border: none; }
+    .et td:last-child { text-align: left !important; margin-top: 10px; }
+    .action-cell { justify-content: flex-start; }
+    .gc { gap: 10px; }
+    .ga { width: 32px; height: 32px; font-size: 13px; }
+    .gn { font-size: 15px; }
+    .daddr { margin-left: 42px; }
+}
 </style>

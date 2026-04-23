@@ -6,33 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Guest;
 use App\Models\Gift;
-use App\Models\Event;
 
 class GiftController extends Controller
 {
-    /**
-     * Get or auto-create the user's default event.
-     */
-    private function getOrCreateDefaultEvent(): Event
-    {
-        $user = auth()->user();
-
-        // Try to get existing event
-        $event = Event::first();
-
-        if (!$event) {
-            // Auto-create a default event for this user
-            $event = Event::create([
-                'user_id'    => $user->id,
-                'event_name' => $user->wedding_name ?: ($user->name . "'s Wedding"),
-                'event_date' => $user->wedding_date ?: now()->toDateString(),
-                'location'   => null,
-            ]);
-        }
-
-        return $event;
-    }
-
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -46,10 +22,8 @@ class GiftController extends Controller
             'note'       => 'nullable|string',
         ]);
 
-        $event = $this->getOrCreateDefaultEvent();
-
         $guest = Guest::create([
-            'event_id' => $event->id,
+            'user_id'  => auth()->id(),
             'name'     => $validated['guest_name'],
             'address'  => $validated['address'] ?? null,
             'phone'    => $validated['phone'] ?? null,
@@ -57,7 +31,6 @@ class GiftController extends Controller
         ]);
 
         $guest->gifts()->create([
-            'event_id'  => $event->id,
             'type'      => $validated['type'],
             'amount'    => $validated['amount'] ?? null,
             'item_name' => $validated['item_name'] ?? null,
@@ -97,7 +70,6 @@ class GiftController extends Controller
             ]);
         } else {
             $guest->gifts()->create([
-                'event_id'  => $guest->event_id,
                 'type'      => $validated['type'],
                 'amount'    => $validated['amount'] ?? null,
                 'item_name' => $validated['item_name'] ?? null,

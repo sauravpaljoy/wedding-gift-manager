@@ -25,7 +25,7 @@ function isActive(routeName) {
 </script>
 
 <template>
-    <div class="shagun-app">
+    <div class="sptechbd-app">
         <!-- Mobile Overlay -->
         <div
             v-if="sidebarOpen"
@@ -34,7 +34,7 @@ function isActive(routeName) {
         ></div>
 
         <!-- Sidebar -->
-        <aside :class="['shagun-sidebar', { 'sidebar-open': sidebarOpen }]">
+        <aside :class="['sptechbd-sidebar', { 'sidebar-open': sidebarOpen }]">
             <!-- Logo -->
             <div class="sidebar-logo">
                 <div class="logo-circle-sm">
@@ -66,16 +66,16 @@ function isActive(routeName) {
             <!-- Bottom CTA -->
             <div class="sidebar-bottom">
                 <div class="sidebar-cta">
-                    <div class="cta-title">Blessings in every entry</div>
-                    <div class="cta-sub">Save memories, not just gifts ✨</div>
+                    <div class="cta-title">{{ user?.name }}</div>
+                    <div class="cta-sub">{{ user?.wedding_name || 'Wedding / Event Name' }}</div>
                 </div>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <div class="shagun-main">
+        <div class="sptechbd-main">
             <!-- Top Header -->
-            <header class="shagun-header">
+            <header class="sptechbd-header">
                 <div class="header-left">
                     <button class="hamburger" @click="sidebarOpen = !sidebarOpen">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -102,12 +102,12 @@ function isActive(routeName) {
             </header>
 
             <!-- Page Content -->
-            <main class="shagun-content">
+            <main class="sptechbd-content">
                 <slot />
             </main>
 
             <!-- Footer -->
-            <footer class="shagun-footer">
+            <footer class="sptechbd-footer">
                 &copy; SP Tech BD 2026. All Rights Reserved. Developed by <a href="https://sauravpal.xyz/" target="_blank" class="footer-link">Saurav pal</a>
             </footer>
         </div>
@@ -115,7 +115,7 @@ function isActive(routeName) {
 </template>
 
 <style scoped>
-.shagun-app {
+.sptechbd-app {
     display: flex;
     min-height: 100vh;
     background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 50%, #ede9fe 100%);
@@ -123,7 +123,7 @@ function isActive(routeName) {
 }
 
 /* ─── Sidebar ─── */
-.shagun-sidebar {
+.sptechbd-sidebar {
     width: 240px;
     min-height: 100vh;
     background: linear-gradient(180deg, #ffffff 0%, #fdf4ff 100%);
@@ -256,7 +256,7 @@ function isActive(routeName) {
 }
 
 /* ─── Main ─── */
-.shagun-main {
+.sptechbd-main {
     flex: 1;
     margin-left: 240px;
     display: flex;
@@ -265,7 +265,7 @@ function isActive(routeName) {
 }
 
 /* ─── Header ─── */
-.shagun-header {
+.sptechbd-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -303,17 +303,23 @@ function isActive(routeName) {
 }
 
 .page-title {
-    font-size: 26px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 800;
     color: #1e1b4b;
     line-height: 1.2;
     margin: 0;
 }
 
 .page-subtitle {
-    font-size: 13px;
+    font-size: 11px;
     color: #9ca3af;
-    margin: 2px 0 0;
+    margin: 1px 0 0;
+    font-weight: 500;
+}
+
+@media (min-width: 768px) {
+    .page-title { font-size: 26px; }
+    .page-subtitle { font-size: 13px; }
 }
 
 .event-mode-btn {
@@ -337,13 +343,13 @@ function isActive(routeName) {
 }
 
 /* ─── Content ─── */
-.shagun-content {
+.sptechbd-content {
     flex: 1;
     padding: 24px 28px;
 }
 
 /* ─── Footer ─── */
-.shagun-footer {
+.sptechbd-footer {
     text-align: center;
     padding: 20px;
     font-size: 12px;
@@ -365,7 +371,7 @@ function isActive(routeName) {
 
 /* ─── Mobile ─── */
 @media (max-width: 768px) {
-    .shagun-sidebar {
+    .sptechbd-sidebar {
         transform: translateX(-100%);
     }
 
@@ -373,7 +379,7 @@ function isActive(routeName) {
         transform: translateX(0);
     }
 
-    .shagun-main {
+    .sptechbd-main {
         margin-left: 0;
     }
 
@@ -381,12 +387,18 @@ function isActive(routeName) {
         display: flex;
     }
 
-    .shagun-content {
-        padding: 16px;
+    .sptechbd-content {
+        padding: 12px;
     }
 
-    .shagun-header {
+    .sptechbd-header {
         padding: 12px 16px;
+    }
+
+    .event-mode-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        border-radius: 10px;
     }
 }
 </style>

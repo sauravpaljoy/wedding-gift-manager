@@ -11,28 +11,23 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $userId = auth()->id();
+        $user = auth()->user();
 
-        $totalCash = Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
-            ->where('type', 'cash')->sum('amount');
-
-        $totalItems = Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
-            ->where('type', 'item')->count();
-
-        $totalGuests = Guest::whereHas('event', fn($q) => $q->where('user_id', $userId))->count();
+        $totalCash = $user->gifts()->where('type', 'cash')->sum('amount');
+        $totalItems = $user->gifts()->where('type', 'item')->count();
+        $totalGuests = $user->guests()->count();
 
         // Cash by relation
         $byRelation = [];
         $relations = ['Family', 'Relative', 'Friend', 'Colleague'];
         foreach ($relations as $rel) {
-            $byRelation[$rel] = Gift::whereHas('guest', fn($q) => $q->where('relation', $rel))
-                ->whereHas('event', fn($q) => $q->where('user_id', $userId))
+            $byRelation[$rel] = $user->gifts()
+                ->whereHas('guest', fn($q) => $q->where('relation', $rel))
                 ->where('type', 'cash')
                 ->sum('amount');
         }
 
-        $cashContributors = Gift::whereHas('event', fn($q) => $q->where('user_id', $userId))
-            ->where('type', 'cash')->count();
+        $cashContributors = $user->gifts()->where('type', 'cash')->count();
 
         return Inertia::render('Reports', [
             'stats' => [

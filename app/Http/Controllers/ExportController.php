@@ -9,7 +9,7 @@ class ExportController extends Controller
 {
     public function csv()
     {
-        $guests = Guest::with(['event', 'gifts'])->get();
+        $guests = auth()->user()->guests()->with('gifts')->get();
         
         $filename = "guests_export_" . date('Y-m-d') . ".csv";
         
@@ -21,24 +21,36 @@ class ExportController extends Controller
             "Expires"             => "0"
         ];
 
-        $columns = ['Name', 'Phone', 'Relation', 'Event', 'Gift Type', 'Amount', 'Gift Item', 'Note'];
+        $columns = ['Name', 'Phone', 'Relation', 'Gift Type', 'Amount', 'Gift Item', 'Note'];
 
         $callback = function() use($guests, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
             foreach ($guests as $guest) {
-                $gift = $guest->gifts[0] ?? null;
-                fputcsv($file, [
-                    $guest->name,
-                    $guest->phone,
-                    $guest->relation,
-                    $guest->event->event_name ?? 'N/A',
-                    $gift->type ?? 'N/A',
-                    $gift->amount ?? '0',
-                    $gift->item_name ?? '',
-                    $gift->note ?? ''
-                ]);
+                foreach ($guest->gifts as $gift) {
+                    fputcsv($file, [
+                        $guest->name,
+                        $guest->phone,
+                        $guest->relation,
+                        $gift->type ?? 'N/A',
+                        $gift->amount ?? '0',
+                        $gift->item_name ?? '',
+                        $gift->note ?? ''
+                    ]);
+                }
+                
+                if ($guest->gifts->isEmpty()) {
+                    fputcsv($file, [
+                        $guest->name,
+                        $guest->phone,
+                        $guest->relation,
+                        'N/A',
+                        '0',
+                        '',
+                        ''
+                    ]);
+                }
             }
 
             fclose($file);
