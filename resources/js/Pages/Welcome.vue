@@ -3,7 +3,11 @@ import { Head, Link } from '@inertiajs/vue3';
 </script>
 
 <template>
+<<<<<<< HEAD
   <Head title="SP Tech BD — The Ultimate Wedding Gift Manager" />
+=======
+  <Head title="Welcome -  SP Tech BD" />
+>>>>>>> ab8016a57718c7c8119e32d07693d79b7f237d1e
   
   <div class="min-h-screen bg-[#fcfaff] font-sans text-gray-900 selection:bg-purple-100 selection:text-purple-900">
     

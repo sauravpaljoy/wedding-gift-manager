@@ -13,13 +13,19 @@ const pwForm = useForm({ current_password: '', password: '', password_confirmati
 const updatePw = () => { pwForm.put(route('password.update'), { onSuccess: () => pwForm.reset() }); };
 </script>
 <template>
+<<<<<<< HEAD
     <Head title="Settings – SP Tech BD" />
     <SPTechBDLayout>
         <template #title>Settings</template>
+=======
+    <Head title="Settings – WeddingGift" />
+    <ShagunLayout>
+        <template #title>Settings Information</template>
+>>>>>>> ab8016a57718c7c8119e32d07693d79b7f237d1e
         <template #subtitle>Manage your account and preferences</template>
         <!-- Profile -->
         <div class="card">
-            <div class="st">Profile Information</div>
+            <div class="st">Profile </div>
             <div class="ss">Update your account details</div>
             <form @submit.prevent="submit" class="sform">
                 <div class="fg">
