@@ -1,9 +1,7 @@
 <template>
     <div class="flex items-center gap-2">
-        <div class="logo-circle">
-            <span>SP</span>
-        </div>
-        <span class="logo-text-gradient">Tech BD</span>
+        
+        <span class="logo-text-gradient">SP Tech BD</span>
     </div>
 </template>
 

@@ -1,378 +1,352 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-
-defineProps({
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
-});
-
-function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
-}
 </script>
 
 <template>
-    <Head title="Welcome" />
-    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-        <img
-            id="background"
-            class="absolute -left-20 top-0 max-w-[877px]"
-            src="https://laravel.com/assets/img/welcome/background.svg"
-        />
-        <div
-            class="relative flex min-h-screen flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white"
-        >
-            <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                <header
-                    class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3"
-                >
-                    <div class="flex lg:col-start-2 lg:justify-center">
-                        <ApplicationLogo class="h-16 w-auto" />
-                    </div>
-                    <nav v-if="canLogin" class="-mx-3 flex flex-1 justify-end">
-                        <Link
-                            v-if="$page.props.auth.user"
-                            :href="route('dashboard')"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                        >
-                            Dashboard
-                        </Link>
+  <Head title="Welcome - Wedding Gift Manager" />
+  
+  <div class="min-h-screen bg-[#faf9fe] font-sans text-gray-900 selection:bg-purple-100 selection:text-purple-900">
+    <!-- 🌈 NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-5 bg-white/70 backdrop-blur-md border-b border-purple-50">
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-200">
+            <span class="text-white font-bold text-xl">W</span>
+        </div>
+        <h1 class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 tracking-tight">
+            WeddingGift
+        </h1>
+      </div>
 
-                        <template v-else>
-                            <Link
-                                :href="route('login')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            >
-                                Log in
-                            </Link>
+      <div class="flex items-center space-x-6">
+        <Link :href="route('login')" class="hidden md:block text-sm font-semibold text-gray-600 hover:text-purple-600 transition-colors">
+            Login
+        </Link>
+        <Link :href="route('register')" class="px-6 py-2.5 bg-purple-600 text-white text-sm font-bold rounded-full shadow-lg shadow-purple-200 hover:bg-purple-700 hover:shadow-purple-300 transition-all active:scale-95">
+          Get Started
+        </Link>
+      </div>
+    </header>
 
-                            <Link
-                                v-if="canRegister"
-                                :href="route('register')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            >
-                                Register
-                            </Link>
-                        </template>
-                    </nav>
-                </header>
+    <!-- 🚀 HERO -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-200/50 blur-[120px] rounded-full animate-pulse"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-200/50 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
+        </div>
 
-                <main class="mt-6">
-                    <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                        <a
-                            href="https://laravel.com/docs"
-                            id="docs-card"
-                            class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                        >
-                            <div
-                                id="screenshot-container"
-                                class="relative flex w-full flex-1 items-stretch"
-                            >
-                                <img
-                                    src="https://laravel.com/assets/img/welcome/docs-light.svg"
-                                    alt="Laravel documentation screenshot"
-                                    class="aspect-video h-full w-full flex-1 rounded-[10px] object-cover object-top drop-shadow-[0px_4px_34px_rgba(0,0,0,0.06)] dark:hidden"
-                                    @error="handleImageError"
-                                />
-                                <img
-                                    src="https://laravel.com/assets/img/welcome/docs-dark.svg"
-                                    alt="Laravel documentation screenshot"
-                                    class="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-cover object-top drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
-                                />
-                                <div
-                                    class="absolute -bottom-16 -left-16 h-40 w-[calc(100%+8rem)] bg-gradient-to-b from-transparent via-white to-white dark:via-zinc-900 dark:to-zinc-900"
-                                ></div>
-                            </div>
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-100 text-purple-600 text-xs font-bold mb-8 animate-bounce-slow">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                </span>
+                The #1 Wedding Gift Tracker in BD 🇧🇩
+            </div>
 
-                            <div
-                                class="relative flex items-center gap-6 lg:items-end"
-                            >
-                                <div
-                                    id="docs-card-content"
-                                    class="flex items-start gap-6 lg:flex-col"
-                                >
-                                    <div
-                                        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16"
-                                    >
-                                        <svg
-                                            class="size-5 sm:size-6"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                fill="#FF2D20"
-                                                d="M23 4a1 1 0 0 0-1.447-.894L12.224 7.77a.5.5 0 0 1-.448 0L2.447 3.106A1 1 0 0 0 1 4v13.382a1.99 1.99 0 0 0 1.105 1.79l9.448 4.728c.14.065.293.1.447.1.154-.005.306-.04.447-.105l9.453-4.724a1.99 1.99 0 0 0 1.1-1.789V4ZM3 6.023a.25.25 0 0 1 .362-.223l7.5 3.75a.251.251 0 0 1 .138.223v11.2a.25.25 0 0 1-.362.224l-7.5-3.75a.25.25 0 0 1-.138-.22V6.023Zm18 11.2a.25.25 0 0 1-.138.224l-7.5 3.75a.249.249 0 0 1-.329-.099.249.249 0 0 1-.033-.12V9.772a.251.251 0 0 1 .138-.224l7.5-3.75a.25.25 0 0 1 .362.224v11.2Z"
-                                            />
-                                            <path
-                                                fill="#FF2D20"
-                                                d="m3.55 1.893 8 4.048a1.008 1.008 0 0 0 .9 0l8-4.048a1 1 0 0 0-.9-1.785l-7.322 3.706a.506.506 0 0 1-.452 0L4.454.108a1 1 0 0 0-.9 1.785H3.55Z"
-                                            />
-                                        </svg>
-                                    </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tight text-gray-900">
+                Track Every Gift <br />
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400">
+                    Beautifully & Effortlessly 💜
+                </span>
+            </h1>
 
-                                    <div class="pt-3 sm:pt-5 lg:pt-0">
-                                        <h2
-                                            class="text-xl font-semibold text-black dark:text-white"
-                                        >
-                                            Documentation
-                                        </h2>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-600 leading-relaxed">
+                অতিথি, ক্যাশ এবং গিফট—সবকিছু এক জায়গায় ম্যানেজ করুন। আর কখনো ভুলবেন না কে কি দিল। আপনার স্পেশাল দিনটির হিসাব হোক সহজ ও ডিজিটাল।
+            </p>
 
-                                        <p class="mt-4 text-sm/relaxed">
-                                            Laravel has wonderful documentation
-                                            covering every aspect of the
-                                            framework. Whether you are a
-                                            newcomer or have prior experience
-                                            with Laravel, we recommend reading
-                                            our documentation from beginning to
-                                            end.
-                                        </p>
-                                    </div>
-                                </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link :href="route('register')"
+                   class="w-full sm:w-auto px-10 py-4 bg-purple-600 text-white rounded-2xl font-bold text-lg shadow-xl shadow-purple-200 hover:bg-purple-700 hover:shadow-purple-300 transition-all hover:-translate-y-1">
+                  Get Started Free
+                </Link>
 
-                                <svg
-                                    class="size-6 shrink-0 stroke-[#FF2D20]"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                    />
-                                </svg>
-                            </div>
-                        </a>
-
-                        <a
-                            href="https://laracasts.com"
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                        >
-                            <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16"
-                            >
-                                <svg
-                                    class="size-5 sm:size-6"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <g fill="#FF2D20">
-                                        <path
-                                            d="M24 8.25a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 0-.5.5v12a2.5 2.5 0 0 0 2.5 2.5h19a2.5 2.5 0 0 0 2.5-2.5v-12Zm-7.765 5.868a1.221 1.221 0 0 1 0 2.264l-6.626 2.776A1.153 1.153 0 0 1 8 18.123v-5.746a1.151 1.151 0 0 1 1.609-1.035l6.626 2.776ZM19.564 1.677a.25.25 0 0 0-.177-.427H15.6a.106.106 0 0 0-.072.03l-4.54 4.543a.25.25 0 0 0 .177.427h3.783c.027 0 .054-.01.073-.03l4.543-4.543ZM22.071 1.318a.047.047 0 0 0-.045.013l-4.492 4.492a.249.249 0 0 0 .038.385.25.25 0 0 0 .14.042h5.784a.5.5 0 0 0 .5-.5v-2a2.5 2.5 0 0 0-1.925-2.432ZM13.014 1.677a.25.25 0 0 0-.178-.427H9.101a.106.106 0 0 0-.073.03l-4.54 4.543a.25.25 0 0 0 .177.427H8.4a.106.106 0 0 0 .073-.03l4.54-4.543ZM6.513 1.677a.25.25 0 0 0-.177-.427H2.5A2.5 2.5 0 0 0 0 3.75v2a.5.5 0 0 0 .5.5h1.4a.106.106 0 0 0 .073-.03l4.54-4.543Z"
-                                        />
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="pt-3 sm:pt-5">
-                                <h2
-                                    class="text-xl font-semibold text-black dark:text-white"
-                                >
-                                    Laracasts
-                                </h2>
-
-                                <p class="mt-4 text-sm/relaxed">
-                                    Laracasts offers thousands of video
-                                    tutorials on Laravel, PHP, and JavaScript
-                                    development. Check them out, see for
-                                    yourself, and massively level up your
-                                    development skills in the process.
-                                </p>
-                            </div>
-
-                            <svg
-                                class="size-6 shrink-0 self-center stroke-[#FF2D20]"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                />
-                            </svg>
-                        </a>
-
-                        <a
-                            href="https://laravel-news.com"
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"
-                        >
-                            <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16"
-                            >
-                                <svg
-                                    class="size-5 sm:size-6"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <g fill="#FF2D20">
-                                        <path
-                                            d="M8.75 4.5H5.5c-.69 0-1.25.56-1.25 1.25v4.75c0 .69.56 1.25 1.25 1.25h3.25c.69 0 1.25-.56 1.25-1.25V5.75c0-.69-.56-1.25-1.25-1.25Z"
-                                        />
-                                        <path
-                                            d="M24 10a3 3 0 0 0-3-3h-2V2.5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2V20a3.5 3.5 0 0 0 3.5 3.5h17A3.5 3.5 0 0 0 24 20V10ZM3.5 21.5A1.5 1.5 0 0 1 2 20V3a.5.5 0 0 1 .5-.5h14a.5.5 0 0 1 .5.5v17c0 .295.037.588.11.874a.5.5 0 0 1-.484.625L3.5 21.5ZM22 20a1.5 1.5 0 1 1-3 0V9.5a.5.5 0 0 1 .5-.5H21a1 1 0 0 1 1 1v10Z"
-                                        />
-                                        <path
-                                            d="M12.751 6.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 7.3v-.5a.75.75 0 0 1 .751-.753ZM12.751 10.047h2a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-2A.75.75 0 0 1 12 11.3v-.5a.75.75 0 0 1 .751-.753ZM4.751 14.047h10a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-10A.75.75 0 0 1 4 15.3v-.5a.75.75 0 0 1 .751-.753ZM4.75 18.047h7.5a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-.75.75h-7.5A.75.75 0 0 1 4 19.3v-.5a.75.75 0 0 1 .75-.753Z"
-                                        />
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="pt-3 sm:pt-5">
-                                <h2
-                                    class="text-xl font-semibold text-black dark:text-white"
-                                >
-                                    Laravel News
-                                </h2>
-
-                                <p class="mt-4 text-sm/relaxed">
-                                    Laravel News is a community driven portal
-                                    and newsletter aggregating all of the latest
-                                    and most important news in the Laravel
-                                    ecosystem, including new package releases
-                                    and tutorials.
-                                </p>
-                            </div>
-
-                            <svg
-                                class="size-6 shrink-0 self-center stroke-[#FF2D20]"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                />
-                            </svg>
-                        </a>
-
-                        <div
-                            class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800"
-                        >
-                            <div
-                                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#FF2D20]/10 sm:size-16"
-                            >
-                                <svg
-                                    class="size-5 sm:size-6"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <g fill="#FF2D20">
-                                        <path
-                                            d="M16.597 12.635a.247.247 0 0 0-.08-.237 2.234 2.234 0 0 1-.769-1.68c.001-.195.03-.39.084-.578a.25.25 0 0 0-.09-.267 8.8 8.8 0 0 0-4.826-1.66.25.25 0 0 0-.268.181 2.5 2.5 0 0 1-2.4 1.824.045.045 0 0 0-.045.037 12.255 12.255 0 0 0-.093 3.86.251.251 0 0 0 .208.214c2.22.366 4.367 1.08 6.362 2.118a.252.252 0 0 0 .32-.079 10.09 10.09 0 0 0 1.597-3.733ZM13.616 17.968a.25.25 0 0 0-.063-.407A19.697 19.697 0 0 0 8.91 15.98a.25.25 0 0 0-.287.325c.151.455.334.898.548 1.328.437.827.981 1.594 1.619 2.28a.249.249 0 0 0 .32.044 29.13 29.13 0 0 0 2.506-1.99ZM6.303 14.105a.25.25 0 0 0 .265-.274 13.048 13.048 0 0 1 .205-4.045.062.062 0 0 0-.022-.07 2.5 2.5 0 0 1-.777-.982.25.25 0 0 0-.271-.149 11 11 0 0 0-5.6 2.815.255.255 0 0 0-.075.163c-.008.135-.02.27-.02.406.002.8.084 1.598.246 2.381a.25.25 0 0 0 .303.193 19.924 19.924 0 0 1 5.746-.438ZM9.228 20.914a.25.25 0 0 0 .1-.393 11.53 11.53 0 0 1-1.5-2.22 12.238 12.238 0 0 1-.91-2.465.248.248 0 0 0-.22-.187 18.876 18.876 0 0 0-5.69.33.249.249 0 0 0-.179.336c.838 2.142 2.272 4 4.132 5.353a.254.254 0 0 0 .15.048c1.41-.01 2.807-.282 4.117-.802ZM18.93 12.957l-.005-.008a.25.25 0 0 0-.268-.082 2.21 2.21 0 0 1-.41.081.25.25 0 0 0-.217.2c-.582 2.66-2.127 5.35-5.75 7.843a.248.248 0 0 0-.09.299.25.25 0 0 0 .065.091 28.703 28.703 0 0 0 2.662 2.12.246.246 0 0 0 .209.037c2.579-.701 4.85-2.242 6.456-4.378a.25.25 0 0 0 .048-.189 13.51 13.51 0 0 0-2.7-6.014ZM5.702 7.058a.254.254 0 0 0 .2-.165A2.488 2.488 0 0 1 7.98 5.245a.093.093 0 0 0 .078-.062 19.734 19.734 0 0 1 3.055-4.74.25.25 0 0 0-.21-.41 12.009 12.009 0 0 0-10.4 8.558.25.25 0 0 0 .373.281 12.912 12.912 0 0 1 4.826-1.814ZM10.773 22.052a.25.25 0 0 0-.28-.046c-.758.356-1.55.635-2.365.833a.25.25 0 0 0-.022.48c1.252.43 2.568.65 3.893.65.1 0 .2 0 .3-.008a.25.25 0 0 0 .147-.444c-.526-.424-1.1-.917-1.673-1.465ZM18.744 8.436a.249.249 0 0 0 .15.228 2.246 2.246 0 0 1 1.352 2.054c0 .337-.08.67-.23.972a.25.25 0 0 0 .042.28l.007.009a15.016 15.016 0 0 1 2.52 4.6.25.25 0 0 0 .37.132.25.25 0 0 0 .096-.114c.623-1.464.944-3.039.945-4.63a12.005 12.005 0 0 0-5.78-10.258.25.25 0 0 0-.373.274c.547 2.109.85 4.274.901 6.453ZM9.61 5.38a.25.25 0 0 0 .08.31c.34.24.616.561.8.935a.25.25 0 0 0 .3.127.631.631 0 0 1 .206-.034c2.054.078 4.036.772 5.69 1.991a.251.251 0 0 0 .267.024c.046-.024.093-.047.141-.067a.25.25 0 0 0 .151-.23A29.98 29.98 0 0 0 15.957.764a.25.25 0 0 0-.16-.164 11.924 11.924 0 0 0-2.21-.518.252.252 0 0 0-.215.076A22.456 22.456 0 0 0 9.61 5.38Z"
-                                        />
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="pt-3 sm:pt-5">
-                                <h2
-                                    class="text-xl font-semibold text-black dark:text-white"
-                                >
-                                    Vibrant Ecosystem
-                                </h2>
-
-                                <p class="mt-4 text-sm/relaxed">
-                                    Laravel's robust library of first-party
-                                    tools and libraries, such as
-                                    <a
-                                        href="https://forge.laravel.com"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white dark:focus-visible:ring-[#FF2D20]"
-                                        >Forge</a
-                                    >,
-                                    <a
-                                        href="https://vapor.laravel.com"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Vapor</a
-                                    >,
-                                    <a
-                                        href="https://nova.laravel.com"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Nova</a
-                                    >,
-                                    <a
-                                        href="https://envoyer.io"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Envoyer</a
-                                    >, and
-                                    <a
-                                        href="https://herd.laravel.com"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Herd</a
-                                    >
-                                    help you take your projects to the next
-                                    level. Pair them with powerful open source
-                                    libraries like
-                                    <a
-                                        href="https://laravel.com/docs/billing"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Cashier</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/dusk"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Dusk</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/broadcasting"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Echo</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/horizon"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Horizon</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/sanctum"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Sanctum</a
-                                    >,
-                                    <a
-                                        href="https://laravel.com/docs/telescope"
-                                        class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white"
-                                        >Telescope</a
-                                    >, and more.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-
-                <footer
-                    class="py-16 text-center text-sm text-black dark:text-white/70"
-                >
-                    &copy; SP Tech BD 2026. All Rights Reserved. Developed by <a href="https://sauravpal.xyz/" target="_blank" style="color: #FF2D20; font-weight: 600; text-decoration: none;">Saurav pal</a>
-                    <div class="mt-2 opacity-50">Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})</div>
-                </footer>
+                <a href="#demo"
+                   class="w-full sm:w-auto px-10 py-4 bg-white border-2 border-purple-100 text-purple-600 rounded-2xl font-bold text-lg hover:bg-purple-50 transition-all">
+                  Live Demo
+                </a>
+            </div>
+            
+            <!-- Dashboard Mockup Placeholder -->
+            <div class="mt-20 relative group">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#faf9fe] via-transparent to-transparent z-10"></div>
+                <div class="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-[2.5rem] blur-2xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                <img src="/images/dashboard.png" alt="Dashboard Preview" 
+                     class="relative z-0 rounded-2xl md:rounded-[2rem] shadow-2xl border border-white/50 w-full max-w-5xl mx-auto transform group-hover:scale-[1.01] transition-transform duration-500" />
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- 😓 PROBLEM SECTION -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-black mb-4">Wedding Gift Tracking is Messy 😓</h2>
+                <p class="text-gray-500 font-medium">Why manual tracking fails you</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group p-8 bg-purple-50/50 rounded-3xl border border-transparent hover:border-purple-100 hover:bg-white hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-3xl shadow-sm mb-6 group-hover:scale-110 transition-transform">
+                        🧠
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">ভুলে যাওয়ার ভয়</h3>
+                    <p class="text-gray-600">কে কত টাকা বা কি গিফট দিল তা মনে রাখা অসম্ভব।</p>
+                </div>
+
+                <div class="group p-8 bg-pink-50/50 rounded-3xl border border-transparent hover:border-pink-100 hover:bg-white hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-3xl shadow-sm mb-6 group-hover:scale-110 transition-transform">
+                        📄
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">খাতা হারিয়ে যাওয়া</h3>
+                    <p class="text-gray-600">হাতের লিখা বা কাগজের নোট যেকোনো সময় হারিয়ে যেতে পারে।</p>
+                </div>
+
+                <div class="group p-8 bg-orange-50/50 rounded-3xl border border-transparent hover:border-orange-100 hover:bg-white hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-3xl shadow-sm mb-6 group-hover:scale-110 transition-transform">
+                        🧮
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">হিসাব মিলানো ঝামেলা</h3>
+                    <p class="text-gray-600">ম্যানুয়ালি হাজারো মানুষের গিফটের হিসাব মিলানো অনেক সময়ের কাজ।</p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <div class="inline-flex items-center gap-3 px-6 py-3 bg-green-50 text-green-700 rounded-full font-bold text-lg border border-green-100">
+                    <span class="flex h-3 w-3 rounded-full bg-green-500"></span>
+                    এখন সব ডিজিটালভাবে সহজভাবে ম্যানেজ করুন
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎁 FEATURES -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-purple-100/50 blur-[100px] rounded-full -z-10"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-2xl">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6">Powerful Features for Your Big Day</h2>
+                    <p class="text-lg text-gray-600 font-medium leading-relaxed">
+                        We've built everything you need to keep your wedding gifts organized and accessible from anywhere.
+                    </p>
+                </div>
+                <Link :href="route('register')" class="text-purple-600 font-bold hover:underline">Explore all features &rarr;</Link>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-10 bg-white rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl hover:shadow-purple-100 transition-all duration-500 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 group-hover:rotate-12 transition-transform">
+                        👥
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Guest Management</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        সব গেস্ট এক জায়গায় সুন্দরভাবে সাজানো। মোবাইল থেকেই দ্রুত গেস্ট যোগ করুন।
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-10 bg-white rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl hover:shadow-pink-100 transition-all duration-500 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 group-hover:rotate-12 transition-transform">
+                        💰
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Gift Tracking</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Cash বা Item—যেকোনো গিফট নিমেষেই ট্র্যাক করুন। ইভেন্ট মোড দিয়ে দ্রুত এন্ট্রি।
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-10 bg-white rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl hover:shadow-orange-100 transition-all duration-500 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 group-hover:rotate-12 transition-transform">
+                        📊
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Instant Analytics</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        ইভেন্ট চলাকালীন বা পরে তাৎক্ষণিক রিপোর্ট ও হিসাব। মোট কত কালেকশন হলো এক পলকেই।
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⚡ HOW IT WORKS -->
+    <section class="py-24 bg-gray-900 text-white rounded-[3rem] mx-4 md:mx-12 overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')]"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-20">How It Works</h2>
+
+            <div class="grid md:grid-cols-3 gap-12 relative">
+                <!-- Connector lines (hidden on mobile) -->
+                <div class="hidden md:block absolute top-1/4 left-1/4 w-1/2 h-0.5 border-t-2 border-dashed border-gray-700 -z-10"></div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center text-3xl font-black border-4 border-purple-500 mx-auto mb-8 group-hover:scale-110 transition-transform bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+                        1
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Create Account</h3>
+                    <p class="text-gray-400">নিজে সাইন আপ করুন এবং আপনার ইভেন্ট সেটআপ করুন।</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center text-3xl font-black border-4 border-pink-500 mx-auto mb-8 group-hover:scale-110 transition-transform bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+                        2
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Quick Data Entry</h3>
+                    <p class="text-gray-400">ইভেন্টের সময় মোবাইল দিয়ে দ্রুত গেস্ট ও গিফট এন্ট্রি দিন।</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center text-3xl font-black border-4 border-orange-400 mx-auto mb-8 group-hover:scale-110 transition-transform bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+                        3
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Relax & Analyze</h3>
+                    <p class="text-gray-400">পুরো ইভেন্টের সামারি দেখুন এবং ডাটা এক্সপোর্ট করুন।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📸 DEMO PREVIEW -->
+    <section id="demo" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-gradient-to-br from-purple-600 to-pink-500 rounded-[3rem] p-8 md:p-20 text-white text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 blur-[80px] rounded-full"></div>
+                
+                <h2 class="text-4xl md:text-5xl font-black mb-8">Ready to see it in action?</h2>
+                <p class="text-xl mb-12 text-purple-50 max-w-2xl mx-auto font-medium">
+                    Our dashboard is designed to be mobile-first, ensuring you can manage gifts even in the middle of a busy wedding ceremony.
+                </p>
+                
+                <div class="max-w-5xl mx-auto bg-white/10 backdrop-blur-md p-4 rounded-[2rem] border border-white/20 shadow-2xl">
+                    <img src="/images/dashboard.png" alt="Dashboard Preview" class="rounded-2xl w-full shadow-lg" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 💰 PRICING -->
+    <section class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">Simple, Transparent Pricing</h2>
+                <p class="text-gray-500 text-lg font-medium">Choose the plan that fits your event size</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center">
+                <!-- Free -->
+                <div class="p-10 bg-white rounded-[2.5rem] border-2 border-gray-100 hover:border-purple-200 transition-all group">
+                    <h3 class="text-xl font-bold text-gray-500 mb-2 uppercase tracking-widest">Free Plan</h3>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-5xl font-black text-gray-900">৳0</span>
+                        <span class="text-gray-400 font-medium">/event</span>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-gray-600">
+                            <span class="text-green-500 text-xl">✓</span> Up to 50 Guests
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600">
+                            <span class="text-green-500 text-xl">✓</span> Basic Gift Tracking
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400 line-through">
+                            <span>×</span> PDF Export
+                        </li>
+                    </ul>
+
+                    <Link :href="route('register')" class="block w-full py-4 text-center border-2 border-purple-600 text-purple-600 font-bold rounded-2xl hover:bg-purple-50 transition-colors">
+                        Start for Free
+                    </Link>
+                </div>
+
+                <!-- Pro -->
+                <div class="p-12 bg-gray-900 rounded-[2.5rem] shadow-2xl shadow-purple-200 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 px-6 py-2 bg-purple-600 text-white text-xs font-black uppercase rounded-bl-2xl">
+                        Recommended
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-purple-400 mb-2 uppercase tracking-widest">Pro Plan</h3>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-5xl font-black text-white">৳199</span>
+                        <span class="text-gray-400 font-medium">/event</span>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <span class="text-purple-500 text-xl">✓</span> Unlimited Guests
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <span class="text-purple-500 text-xl">✓</span> Advanced Analytics
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <span class="text-purple-500 text-xl">✓</span> Export to PDF & Excel
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <span class="text-purple-500 text-xl">✓</span> Priority Support
+                        </li>
+                    </ul>
+
+                    <Link :href="route('register')" class="block w-full py-4 text-center bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold rounded-2xl shadow-lg shadow-purple-900/20 hover:shadow-purple-900/40 transition-all hover:-translate-y-1">
+                        Go Pro Now
+                    </Link>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚀 CTA -->
+    <section class="py-24 px-6">
+      <div class="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-br from-purple-800 via-purple-700 to-pink-600 p-12 md:p-24 text-center text-white relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+          
+          <h2 class="text-4xl md:text-6xl font-black mb-8 relative z-10 leading-tight">
+            Start Tracking Your Wedding Gifts Today 💜
+          </h2>
+          <p class="text-xl text-purple-100 mb-12 relative z-10 max-w-2xl mx-auto">
+            Join thousands of couples who made their wedding gift management stress-free.
+          </p>
+
+          <Link :href="route('register')"
+             class="relative z-10 inline-block px-12 py-5 bg-white text-purple-800 rounded-2xl font-black text-xl shadow-2xl hover:bg-gray-50 transition-all hover:scale-105 active:scale-95">
+            Create Free Account
+          </Link>
+      </div>
+    </section>
+
+    <!-- 🔻 FOOTER -->
+    <footer class="py-12 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">W</div>
+                    <span class="text-xl font-bold text-gray-900">WeddingGift</span>
+                </div>
+                
+                <div class="flex items-center gap-8 text-sm font-bold text-gray-500">
+                    <a href="#" class="hover:text-purple-600 transition-colors">About</a>
+                    <a href="#" class="hover:text-purple-600 transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-purple-600 transition-colors">Terms</a>
+                    <a href="#" class="hover:text-purple-600 transition-colors">Contact</a>
+                </div>
+                
+                <div class="text-gray-400 text-sm font-medium">
+                    © 2026 WeddingGift — Built with ❤️ by <a href="#" class="text-purple-600 font-bold">SP Tech BD</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+  </div>
 </template>
+
+<style scoped>
+@keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.animate-bounce-slow {
+    animation: bounce-slow 3s infinite ease-in-out;
+}
+</style>
