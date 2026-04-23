@@ -3,7 +3,7 @@ import { Head, Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-  <Head title="Welcome - Wedding Gift Manager" />
+  <Head title="Welcome -  SP Tech BD" />
   
   <div class="min-h-screen bg-[#faf9fe] font-sans text-gray-900 selection:bg-purple-100 selection:text-purple-900">
     <!-- 🌈 NAVBAR -->
