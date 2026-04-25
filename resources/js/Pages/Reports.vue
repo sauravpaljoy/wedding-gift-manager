@@ -76,32 +76,4 @@ const relations = computed(() => props.by_relation || {});
         </div>
     </SPTechBDLayout>
 </template>
-<style scoped>
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
-.stat-card{background:white;border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.sl{font-size:11px;font-weight:700;color:#9ca3af;letter-spacing:.8px;margin-bottom:4px;}
-.sv{font-size:24px;font-weight:700;color:#1e1b4b;line-height:1;}
-.sd{font-size:12px;color:#9ca3af;margin-top:4px;}
-.si{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);}
-.mt{margin-top:20px;}
-.et{font-size:18px;font-weight:700;color:#1e1b4b;}
-.es{font-size:13px;color:#9ca3af;margin-top:2px;}
-.export-btn, .pdf-btn{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:none;}
-.export-btn{background:#f3f4f6;color:#374151;}
-.export-btn:hover{background:#e5e7eb;}
-.pdf-btn{background:linear-gradient(135deg,#a855f7,#ec4899);color:white;box-shadow:0 4px 12px rgba(168,85,247,0.2);}
-.pdf-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(168,85,247,0.3);}
-.rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
-.rel-card{background:#fdf4ff;border-radius:12px;padding:14px 16px;border:1px solid #f3e8ff;}
-.rn{font-size:13px;color:#6b7280;margin-bottom:4px;}
-.ra{font-size:18px;font-weight:700;color:#1e1b4b;}
-.bar-section{display:flex;flex-direction:column;gap:12px;}
-.bar-row{display:flex;align-items:center;gap:12px;}
-.bar-label{font-size:13px;color:#374151;width:80px;flex-shrink:0;}
-.bar-track{flex:1;height:10px;background:#f3f4f6;border-radius:99px;overflow:hidden;}
-.bar-fill{height:100%;background:linear-gradient(90deg,#a855f7,#ec4899);border-radius:99px;transition:width .5s ease;}
-.bar-val{font-size:13px;font-weight:600;color:#1e1b4b;width:100px;text-align:right;flex-shrink:0;}
-.empty{text-align:center;padding:32px;color:#9ca3af;}
-@media(max-width:640px){.stats-grid{grid-template-columns:1fr 1fr;}}
-</style>
+</template>

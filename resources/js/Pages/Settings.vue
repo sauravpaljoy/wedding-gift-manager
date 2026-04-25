@@ -79,25 +79,4 @@ const updatePw = () => { pwForm.put(route('password.update'), { onSuccess: () =>
         </div>
     </SPTechBDLayout>
 </template>
-<style scoped>
-.card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);}
-.mt{margin-top:20px;}
-.st{font-size:18px;font-weight:700;color:#1e1b4b;margin-bottom:4px;}
-.ss{font-size:13px;color:#9ca3af;margin-bottom:16px;}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.fi{display:flex;flex-direction:column;gap:6px;}
-.fl{font-size:13px;font-weight:600;color:#374151;}
-.finput{padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;color:#1e1b4b;outline:none;transition:border-color .2s;background:white;}
-.finput:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.1);}
-.save-btn{padding:10px 24px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;}
-.save-btn:disabled{opacity:.6;cursor:not-allowed;}
-.saved{margin-left:12px;font-size:13px;color:#059669;font-weight:600;}
-.logout-card{border-color:#e0e7ff;}
-.logout-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.logout-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#f5f3ff;color:#7c3aed;border:1.5px solid #ddd6fe;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;}
-.logout-btn:hover{background:#ede9fe;border-color:#a855f7;color:#6d28d9;}
-.danger-card{border-color:#fecaca;}
-.danger-btn{display:inline-block;padding:10px 20px;background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;}
-.danger-btn:hover{background:#fee2e2;}
-@media(max-width:640px){.fg{grid-template-columns:1fr;}}
-</style>
+</template>

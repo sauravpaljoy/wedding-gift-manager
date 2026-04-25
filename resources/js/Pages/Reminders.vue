@@ -44,25 +44,4 @@ const fmt = (d) => d ? new Date(d).toLocaleDateString('en-BD',{day:'2-digit',mon
         </div>
     </SPTechBDLayout>
 </template>
-<style scoped>
-.card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);}
-.mt{margin-top:20px;}
-.rht{font-size:18px;font-weight:700;color:#1e1b4b;margin-bottom:4px;}
-.rhs{font-size:13px;color:#9ca3af;margin-bottom:16px;}
-.rf{display:flex;gap:10px;flex-wrap:wrap;}
-.ri{flex:1;min-width:200px;}
-.rd{min-width:160px;}
-.finput{width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;color:#1e1b4b;outline:none;transition:border-color .2s;background:white;box-sizing:border-box;}
-.finput:focus{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.1);}
-.add-btn{padding:10px 20px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;}
-.add-btn:disabled{opacity:.6;cursor:not-allowed;}
-.rem-list{display:flex;flex-direction:column;gap:10px;}
-.rem-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;background:#fdf4ff;border:1.5px solid #f3e8ff;transition:all .2s;}
-.rem-item.done{opacity:.5;text-decoration:line-through;}
-.rem-left{flex:1;}
-.rem-text{font-size:14px;font-weight:500;color:#1e1b4b;}
-.rem-date{font-size:12px;color:#9ca3af;margin-top:3px;}
-.dbtn{border:none;background:transparent;color:#d1d5db;cursor:pointer;padding:6px;border-radius:8px;transition:all .2s;display:flex;align-items:center;}
-.dbtn:hover{color:#ef4444;background:#fef2f2;}
-.empty{text-align:center;padding:48px;color:#9ca3af;display:flex;flex-direction:column;align-items:center;}
-</style>
+</template>

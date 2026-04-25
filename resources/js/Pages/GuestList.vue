@@ -69,27 +69,4 @@ const entryCount = (guest) => (guest.gifts || []).length;
     </SPTechBDLayout>
 </template>
 
-<style scoped>
-.card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(168,85,247,.06);border:1px solid rgba(243,232,255,.6);}
-.gh{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
-.gt{font-size:20px;font-weight:700;color:#1e1b4b;}
-.gs{font-size:13px;color:#9ca3af;margin-top:2px;}
-.sw{position:relative;}
-.si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9ca3af;}
-.sinput{padding:9px 12px 9px 36px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;width:220px;}
-.sinput:focus{border-color:#a855f7;}
-.guest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
-.guest-card{background:white;border:1.5px solid #f3e8ff;border-radius:14px;padding:18px;transition:all .2s;cursor:default;}
-.guest-card:hover{border-color:#d8b4fe;box-shadow:0 4px 16px rgba(168,85,247,.1);transform:translateY(-2px);}
-.gc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
-.gc-name{font-size:16px;font-weight:700;color:#1e1b4b;}
-.rel-badge{display:inline-block;padding:3px 10px;border-radius:20px;background:#f5f3ff;color:#7c3aed;font-size:11px;font-weight:600;}
-.gc-addr{display:flex;align-items:center;gap:5px;font-size:12px;color:#9ca3af;margin-bottom:14px;}
-.gc-stats{display:flex;align-items:center;gap:16px;padding-top:14px;border-top:1px solid #f3f4f6;}
-.gstat{display:flex;align-items:center;gap:5px;}
-.cash-val{font-size:13px;font-weight:700;color:#059669;}
-.item-val{font-size:13px;font-weight:700;color:#d97706;}
-.gentry{font-size:12px;color:#9ca3af;margin-left:auto;}
-.empty{grid-column:1/-1;text-align:center;padding:48px;color:#9ca3af;}
-@media(max-width:640px){.sinput{width:160px;}}
-</style>
+</template>
