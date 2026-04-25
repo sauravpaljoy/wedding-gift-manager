@@ -112,11 +112,11 @@ const downloadPdf = () => { window.print(); };
                     <thead><tr><th>NAME</th><th>TYPE</th><th>GIFT / AMOUNT</th><th>RELATION</th><th>ADDRESS</th><th style="text-align:right">ACTION</th></tr></thead>
                     <tbody>
                         <tr v-for="g in filteredGifts" :key="g.id" class="er">
-                            <td><div class="gc"><div class="ga">{{ (g.guest?.name||'G')[0].toUpperCase() }}</div><div class="gn">{{ g.guest?.name }}</div></div></td>
-                            <td><span :class="['tbg',g.type==='cash'?'bc':'bi']">{{ g.type==='cash'?'💳 Cash':'🎁 Item' }}</span></td>
-                            <td><span v-if="g.type==='cash'" class="av">৳ {{ Number(g.amount||0).toLocaleString() }}</span><span v-else class="iv">{{ g.item_name }}</span></td>
-                            <td><span class="rb">{{ g.guest?.relation }}</span></td>
-                            <td class="daddr">{{ g.guest?.address || '—' }}</td>
+                            <td data-label="NAME"><div class="gc"><div class="ga">{{ (g.guest?.name||'G')[0].toUpperCase() }}</div><div class="gn">{{ g.guest?.name }}</div></div></td>
+                            <td data-label="TYPE"><span :class="['tbg',g.type==='cash'?'bc':'bi']">{{ g.type==='cash'?'💳 Cash':'🎁 Item' }}</span></td>
+                            <td data-label="GIFT / AMOUNT"><span v-if="g.type==='cash'" class="av">৳ {{ Number(g.amount||0).toLocaleString() }}</span><span v-else class="iv">{{ g.item_name }}</span></td>
+                            <td data-label="RELATION"><span class="rb">{{ g.guest?.relation }}</span></td>
+                            <td data-label="ADDRESS" class="daddr">{{ g.guest?.address || '—' }}</td>
                             <td style="text-align:right">
                                 <div class="action-cell">
                                     <button @click="editEntry(g)" class="ebtn" title="Edit">

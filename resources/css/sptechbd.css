@@ -539,36 +539,72 @@
 
 /* ─── Mobile Responsiveness ─── */
 @media (max-width: 768px) {
-    .sptechbd-sidebar { transform: translateX(-100%); }
+    .sptechbd-sidebar { transform: translateX(-100%); width: 280px; }
     .sidebar-open { transform: translateX(0); }
     .sptechbd-main { margin-left: 0; }
     .hamburger { display: flex; }
-    .sptechbd-content { padding: 12px; }
-    .sptechbd-header { padding: 12px 16px; }
-    .event-mode-btn { padding: 8px 12px; font-size: 12px; border-radius: 10px; }
+    .sptechbd-content { padding: 12px 16px; }
+    .sptechbd-header { padding: 12px 16px; gap: 8px; }
+    .header-left { gap: 8px; }
+    .page-title { font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+    .page-subtitle { font-size: 10px; }
+    .event-mode-btn { padding: 8px 10px; font-size: 11px; border-radius: 10px; gap: 4px; }
+    .event-mode-btn svg { width: 14px; height: 14px; }
 
-    .quick-card, .card { padding: 16px; border-radius: 16px; }
-    .fg { grid-template-columns: 1fr; gap: 12px; }
+    .quick-card, .card { padding: 20px 16px; border-radius: 16px; }
+    .fg { grid-template-columns: 1fr; gap: 16px; }
     .finput { padding: 12px 14px; font-size: 14px; }
-    .save-btn { width: 100%; padding: 12px; }
-    .qh { gap: 12px; }
+    .save-btn { width: 100%; padding: 14px; font-size: 15px; }
+    
+    .qh { gap: 12px; flex-direction: column; align-items: flex-start; }
+    .qh-left { width: 100%; }
     .type-toggle { width: 100%; }
-    .tb { flex: 1; justify-content: center; }
+    .tb { flex: 1; justify-content: center; padding: 10px; }
+    
+    .rh { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .pdf-btn, .export-btn { width: 100%; justify-content: center; padding: 12px; }
+    
     .filters { gap: 8px; }
     .sw { min-width: 100%; }
     .fsel { flex: 1; font-size: 12px; padding: 10px; }
-    .rh { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .pdf-btn { width: 100%; justify-content: center; }
     
+    /* Responsive Tables as Cards */
     .et thead { display: none; }
-    .er { display: block; padding: 16px 0; border-bottom: 1.5px solid var(--border-light); }
-    .et td { display: block; padding: 4px 0; border: none; }
-    .et td:last-child { text-align: left !important; margin-top: 10px; }
-    .action-cell { justify-content: flex-start; }
-    .gc { gap: 10px; }
-    .ga { width: 32px; height: 32px; font-size: 13px; }
-    .gn { font-size: 15px; }
-    .daddr { margin-left: 42px; }
+    .er { 
+        display: block; padding: 16px; border: 1.5px solid #f3e8ff; 
+        border-radius: 16px; margin-bottom: 16px; background: #fff;
+        box-shadow: 0 4px 12px rgba(168, 85, 247, 0.04);
+    }
+    .et td { 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 8px 0; border: none; text-align: right; font-size: 14px;
+    }
+    .et td:not(:last-child) { border-bottom: 1px dashed #f1f5f9; }
+    .et td::before { 
+        content: attr(data-label); font-weight: 800; color: var(--text-light); 
+        text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; text-align: left;
+    }
+    .et td:last-child { justify-content: flex-start; padding-top: 12px; }
+    .action-cell { justify-content: flex-start; width: 100%; }
+    .ebtn, .dbtn { flex: 1; justify-content: center; padding: 12px; }
     
-    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .gc { gap: 10px; justify-content: flex-end; }
+    .ga { width: 32px; height: 32px; font-size: 13px; }
+    .gn { font-size: 14px; }
+    .daddr { font-size: 12px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    
+    /* Stats grid */
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-card { padding: 14px; gap: 8px; }
+    .sv { font-size: 18px; }
+    .si { width: 36px; height: 36px; border-radius: 10px; }
+    .si svg { width: 18px; height: 18px; }
+
+    /* Guest List Specific */
+    .guest-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .page-title { max-width: 110px; }
 }

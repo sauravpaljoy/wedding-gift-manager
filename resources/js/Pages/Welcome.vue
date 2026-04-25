@@ -55,94 +55,94 @@ import { Head, Link } from '@inertiajs/vue3';
                 Trusted by 5,000+ Couples across Bangladesh 🇧🇩
             </div>
 
-            <h1 class="text-6xl md:text-8xl font-black mb-8 leading-[1.05] tracking-tight text-gray-900 animate-fade-in-up" style="animation-delay: 0.1s">
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black mb-8 leading-[1.1] md:leading-[1.05] tracking-tight text-gray-900 animate-fade-in-up" style="animation-delay: 0.1s">
                 Preserve Every <br class="hidden md:block" />
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-indigo-500 to-pink-500">
                     Blessing Digitally ✨
                 </span>
             </h1>
 
-            <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-gray-500 leading-relaxed font-medium animate-fade-in-up" style="animation-delay: 0.2s">
+            <p class="text-lg md:text-2xl mb-12 max-w-3xl mx-auto text-gray-500 leading-relaxed font-medium animate-fade-in-up" style="animation-delay: 0.2s">
                 আপনার বিশেষ দিনের প্রতিটি উপহার ও আশীর্বাদ সুন্দরভাবে সাজিয়ে রাখুন। 
                 <span class="text-purple-600 font-bold">SP Tech BD</span> নিয়ে এসেছে বাংলাদেশের সেরা ওয়েডিং গিফট ট্র্যাকিং সলিউশন।
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 mb-24 animate-fade-in-up" style="animation-delay: 0.3s">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16 md:mb-24 animate-fade-in-up" style="animation-delay: 0.3s">
                 <Link :href="route('register')"
-                   class="w-full sm:w-auto px-12 py-5 bg-purple-600 text-white rounded-2xl font-black text-xl shadow-2xl shadow-purple-200 hover:bg-purple-700 hover:shadow-purple-400 transition-all hover:-translate-y-1">
+                   class="w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 bg-purple-600 text-white rounded-2xl font-black text-lg md:text-xl shadow-2xl shadow-purple-200 hover:bg-purple-700 hover:shadow-purple-400 transition-all hover:-translate-y-1">
                   Start Your Registry — Free
                 </Link>
 
                 <a href="#features"
-                   class="w-full sm:w-auto px-12 py-5 bg-white border-2 border-purple-100 text-purple-600 rounded-2xl font-black text-xl hover:bg-purple-50 transition-all">
+                   class="w-full sm:w-auto px-8 md:px-12 py-4 md:py-5 bg-white border-2 border-purple-100 text-purple-600 rounded-2xl font-black text-lg md:text-xl hover:bg-purple-50 transition-all">
                   See Features
                 </a>
             </div>
             
             <!-- Dashboard Mockup -->
             <div class="relative group animate-fade-in-up" style="animation-delay: 0.4s">
-                <div class="absolute inset-x-0 -bottom-24 h-96 bg-gradient-to-t from-[#fcfaff] via-[#fcfaff]/80 to-transparent z-10"></div>
-                <div class="absolute -inset-10 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-[4rem] blur-3xl opacity-10 group-hover:opacity-20 transition-opacity duration-700"></div>
+                <div class="absolute inset-x-0 -bottom-16 md:-bottom-24 h-48 md:h-96 bg-gradient-to-t from-[#fcfaff] via-[#fcfaff]/80 to-transparent z-10"></div>
+                <div class="absolute -inset-4 md:-inset-10 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-[2rem] md:rounded-[4rem] blur-2xl md:blur-3xl opacity-10 group-hover:opacity-20 transition-opacity duration-700"></div>
                 
-                <div class="relative z-0 rounded-[2rem] md:rounded-[3rem] p-3 md:p-6 bg-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-purple-50 max-w-6xl mx-auto overflow-hidden">
+                <div class="relative z-0 rounded-[1.5rem] md:rounded-[3rem] p-2 md:p-6 bg-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] border border-purple-50 max-w-6xl mx-auto overflow-hidden">
                     <img src="/images/dashboard.png" alt="SP Tech BD Dashboard" 
-                         class="w-full rounded-[1.5rem] md:rounded-[2.5rem] transform transition-transform duration-1000 group-hover:scale-[1.02]" />
+                         class="w-full rounded-[1.2rem] md:rounded-[2.5rem] transform transition-transform duration-1000 group-hover:scale-[1.02]" />
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 🤝 TRUST INDICATORS -->
-    <section class="py-20 bg-white">
+    <section class="py-12 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-12">Designed for the modern family</p>
-            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-                <span class="text-3xl font-black text-gray-900">BRIDE & GROOM</span>
-                <span class="text-3xl font-black text-gray-900">FAMILY FIRST</span>
-                <span class="text-3xl font-black text-gray-900">DESHI WEDDINGS</span>
-                <span class="text-3xl font-black text-gray-900">GIFT PORTAL</span>
+            <p class="text-[10px] md:text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-8 md:mb-12">Designed for the modern family</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-xl md:text-3xl font-black text-gray-900">BRIDE & GROOM</span>
+                <span class="text-xl md:text-3xl font-black text-gray-900">FAMILY FIRST</span>
+                <span class="text-xl md:text-3xl font-black text-gray-900">DESHI WEDDINGS</span>
+                <span class="text-xl md:text-3xl font-black text-gray-900">GIFT PORTAL</span>
             </div>
         </div>
     </section>
 
     <!-- 💡 WHY CHOOSE US? -->
-    <section id="features" class="py-32 relative">
+    <section id="features" class="py-20 md:py-32 relative">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight">Everything you need to <br />manage with ease</h2>
-                <p class="text-xl text-gray-500 font-medium">আমরা বুঝি একটি বিয়েতে কত হাজার কাজ থাকে। তাই উপহারের হিসাব করার দায়িত্বটা আমাদের উপর ছেড়ে দিন।</p>
+            <div class="text-center max-w-3xl mx-auto mb-16 md:mb-24">
+                <h2 class="text-3xl md:text-6xl font-black mb-6 md:mb-8 leading-tight">Everything you need to <br />manage with ease</h2>
+                <p class="text-lg md:text-xl text-gray-500 font-medium px-2">আমরা বুঝি একটি বিয়েতে কত হাজার কাজ থাকে। তাই উপহারের হিসাব করার দায়িত্বটা আমাদের উপর ছেড়ে দিন।</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-10">
+            <div class="grid md:grid-cols-3 gap-8 md:gap-10">
                 <!-- Feature 1 -->
-                <div class="group p-10 bg-white rounded-[3rem] border border-purple-50 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(124,58,237,0.1)] transition-all duration-500">
-                    <div class="w-20 h-20 bg-purple-50 rounded-3xl flex items-center justify-center text-4xl mb-10 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
+                <div class="group p-8 md:p-10 bg-white rounded-[2.5rem] md:rounded-[3rem] border border-purple-50 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(124,58,237,0.1)] transition-all duration-500">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-purple-50 rounded-2xl md:rounded-3xl flex items-center justify-center text-3xl md:text-4xl mb-8 md:mb-10 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
                         ⚡
                     </div>
-                    <h3 class="text-2xl font-black mb-6">Ultra-Fast Entry</h3>
-                    <p class="text-gray-500 leading-relaxed text-lg">
+                    <h3 class="text-xl md:text-2xl font-black mb-4 md:mb-6">Ultra-Fast Entry</h3>
+                    <p class="text-gray-500 leading-relaxed text-base md:text-lg">
                         ইভেন্ট মোড দিয়ে আপনি এক মিনিটে ১০ জন গেস্টের গিফট এন্ট্রি করতে পারবেন। কোনো মাউস লাগবে না, শুধু এন্টার চাপুন।
                     </p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="group p-10 bg-white rounded-[3rem] border border-purple-50 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(236,72,153,0.1)] transition-all duration-500">
-                    <div class="w-20 h-20 bg-pink-50 rounded-3xl flex items-center justify-center text-4xl mb-10 group-hover:bg-pink-600 group-hover:text-white transition-all duration-500">
+                <div class="group p-8 md:p-10 bg-white rounded-[2.5rem] md:rounded-[3rem] border border-purple-50 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(236,72,153,0.1)] transition-all duration-500">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-pink-50 rounded-2xl md:rounded-3xl flex items-center justify-center text-3xl md:text-4xl mb-8 md:mb-10 group-hover:bg-pink-600 group-hover:text-white transition-all duration-500">
                         📱
                     </div>
-                    <h3 class="text-2xl font-black mb-6">Mobile Focused</h3>
-                    <p class="text-gray-500 leading-relaxed text-lg">
+                    <h3 class="text-xl md:text-2xl font-black mb-4 md:mb-6">Mobile Focused</h3>
+                    <p class="text-gray-500 leading-relaxed text-base md:text-lg">
                         আপনার স্মার্টফোন থেকেই সব হ্যান্ডেল করুন। আলাদা কোনো অ্যাপ ডাউনলোড করার প্রয়োজন নেই, সরাসরি ব্রাউজারেই দারুণ কাজ করে।
                     </p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="group p-10 bg-white rounded-[3rem] border border-purple-50 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(59,130,246,0.1)] transition-all duration-500">
-                    <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center text-4xl mb-10 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                <div class="group p-8 md:p-10 bg-white rounded-[2.5rem] md:rounded-[3rem] border border-purple-50 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(59,130,246,0.1)] transition-all duration-500">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-blue-50 rounded-2xl md:rounded-3xl flex items-center justify-center text-3xl md:text-4xl mb-8 md:mb-10 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
                         📑
                     </div>
-                    <h3 class="text-2xl font-black mb-6">Smart Reports</h3>
-                    <p class="text-gray-500 leading-relaxed text-lg">
+                    <h3 class="text-xl md:text-2xl font-black mb-4 md:mb-6">Smart Reports</h3>
+                    <p class="text-gray-500 leading-relaxed text-base md:text-lg">
                         অনুষ্ঠান শেষে এক ক্লিকেই পুরো উপহারের লিস্ট ডাউনলোড করুন। Excel বা PDF — যা আপনার পছন্দ। হিসাব হবে একদম নিখুঁত।
                     </p>
                 </div>
@@ -151,57 +151,57 @@ import { Head, Link } from '@inertiajs/vue3';
     </section>
 
     <!-- ⚡ HOW IT WORKS (STORY STYLE) -->
-    <section id="how-it-works" class="py-32 bg-gray-900 text-white rounded-[4rem] mx-4 md:mx-12 relative overflow-hidden">
+    <section id="how-it-works" class="py-20 md:py-32 bg-gray-900 text-white rounded-[3rem] md:rounded-[4rem] mx-4 md:mx-12 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         
         <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-24">
-                <h2 class="text-4xl md:text-6xl font-black mb-8">From Chaos to Clarity</h2>
-                <p class="text-gray-400 text-xl max-w-2xl mx-auto">তিনটি সহজ ধাপে আপনার গিফট ম্যানেজমেন্ট শুরু করুন</p>
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-3xl md:text-6xl font-black mb-6 md:mb-8">From Chaos to Clarity</h2>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto px-4">তিনটি সহজ ধাপে আপনার গিফট ম্যানেজমেন্ট শুরু করুন</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-20 items-center">
-                <div class="space-y-12">
-                    <div class="flex gap-8 group">
-                        <div class="flex-shrink-0 w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center font-black text-xl">1</div>
+            <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+                <div class="space-y-10 md:space-y-12">
+                    <div class="flex gap-6 md:gap-8 group">
+                        <div class="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-purple-600 rounded-full flex items-center justify-center font-black text-lg md:text-xl">1</div>
                         <div>
-                            <h4 class="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">Create Your Celebration</h4>
-                            <p class="text-gray-400 leading-relaxed">মিনিটেই ফ্রি একাউন্ট খুলুন এবং আপনার ইভেন্টের নাম ও তারিখ সেট করুন।</p>
+                            <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 group-hover:text-purple-400 transition-colors">Create Your Celebration</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm md:text-base">মিনিটেই ফ্রি একাউন্ট খুলুন এবং আপনার ইভেন্টের নাম ও তারিখ সেট করুন।</p>
                         </div>
                     </div>
 
-                    <div class="flex gap-8 group">
-                        <div class="flex-shrink-0 w-14 h-14 bg-indigo-600 rounded-full flex items-center justify-center font-black text-xl">2</div>
+                    <div class="flex gap-6 md:gap-8 group">
+                        <div class="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-indigo-600 rounded-full flex items-center justify-center font-black text-lg md:text-xl">2</div>
                         <div>
-                            <h4 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">Rapid Entry during Event</h4>
-                            <p class="text-gray-400 leading-relaxed">অনুষ্ঠানের গেটে বসেই গেস্টদের নাম ও গিফট টাইপ করুন। দেরি হবে না একদম।</p>
+                            <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 group-hover:text-indigo-400 transition-colors">Rapid Entry during Event</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm md:text-base">অনুষ্ঠানের গেটে বসেই গেস্টদের নাম ও গিফট টাইপ করুন। দেরি হবে না একদম।</p>
                         </div>
                     </div>
 
-                    <div class="flex gap-8 group">
-                        <div class="flex-shrink-0 w-14 h-14 bg-pink-600 rounded-full flex items-center justify-center font-black text-xl">3</div>
+                    <div class="flex gap-6 md:gap-8 group">
+                        <div class="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-pink-600 rounded-full flex items-center justify-center font-black text-lg md:text-xl">3</div>
                         <div>
-                            <h4 class="text-2xl font-bold mb-3 group-hover:text-pink-400 transition-colors">Instant Analysis & Export</h4>
-                            <p class="text-gray-400 leading-relaxed">অনুষ্ঠান শেষে সব ডাটা আপনার হাতের মুঠোয়। কাকে থ্যাংক ইউ দিতে হবে তাও জানুন।</p>
+                            <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 group-hover:text-pink-400 transition-colors">Instant Analysis & Export</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm md:text-base">অনুষ্ঠান শেষে সব ডাটা আপনার হাতের মুঠোয়। কাকে থ্যাংক ইউ দিতে হবে তাও জানুন।</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative">
-                    <div class="absolute inset-0 bg-purple-500 blur-[100px] opacity-20"></div>
-                    <div class="relative bg-gray-800 rounded-[3rem] p-8 border border-gray-700 shadow-2xl">
-                        <div class="flex items-center gap-2 mb-8">
-                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div class="relative mt-8 md:mt-0">
+                    <div class="absolute inset-0 bg-purple-500 blur-[80px] md:blur-[100px] opacity-20"></div>
+                    <div class="relative bg-gray-800 rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-8 border border-gray-700 shadow-2xl">
+                        <div class="flex items-center gap-2 mb-6 md:mb-8">
+                            <div class="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
+                            <div class="w-2.5 h-2.5 bg-yellow-500 rounded-full"></div>
+                            <div class="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
                         </div>
                         <div class="space-y-4">
-                            <div class="h-10 bg-gray-700 rounded-xl w-3/4 animate-pulse"></div>
-                            <div class="h-24 bg-gray-700/50 rounded-xl w-full animate-pulse"></div>
-                            <div class="h-20 bg-gray-700/50 rounded-xl w-full animate-pulse"></div>
+                            <div class="h-8 md:h-10 bg-gray-700 rounded-xl w-3/4 animate-pulse"></div>
+                            <div class="h-20 md:h-24 bg-gray-700/50 rounded-xl w-full animate-pulse"></div>
+                            <div class="h-16 md:h-20 bg-gray-700/50 rounded-xl w-full animate-pulse"></div>
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="h-32 bg-purple-900/30 rounded-xl border border-purple-500/30"></div>
-                                <div class="h-32 bg-indigo-900/30 rounded-xl border border-indigo-500/30"></div>
+                                <div class="h-24 md:h-32 bg-purple-900/30 rounded-xl border border-purple-500/30"></div>
+                                <div class="h-24 md:h-32 bg-indigo-900/30 rounded-xl border border-indigo-500/30"></div>
                             </div>
                         </div>
                     </div>
@@ -211,70 +211,70 @@ import { Head, Link } from '@inertiajs/vue3';
     </section>
 
     <!-- 💰 PRICING -->
-    <section id="pricing" class="py-32">
+    <section id="pricing" class="py-20 md:py-32">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
-                <h2 class="text-4xl md:text-6xl font-black mb-8">Simple Plans for Huge Days</h2>
-                <p class="text-gray-500 text-xl">স্বচ্ছ দাম, কোনো লুকানো চার্জ নেই।</p>
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-3xl md:text-6xl font-black mb-6 md:mb-8 leading-tight">Simple Plans for <br class="sm:hidden" /> Huge Days</h2>
+                <p class="text-gray-500 text-lg md:text-xl">স্বচ্ছ দাম, কোনো লুকানো চার্জ নেই।</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto">
                 <!-- Free -->
-                <div class="p-12 bg-white rounded-[4rem] border-2 border-gray-100 hover:border-purple-200 transition-all duration-500 group relative">
-                    <h3 class="text-xl font-bold text-gray-400 mb-6 uppercase tracking-widest">Essentials</h3>
-                    <div class="flex items-baseline gap-2 mb-10">
-                        <span class="text-7xl font-black text-gray-900">৳0</span>
-                        <span class="text-gray-400 text-lg font-bold">/event</span>
+                <div class="p-8 md:p-12 bg-white rounded-[3rem] md:rounded-[4rem] border-2 border-gray-100 hover:border-purple-200 transition-all duration-500 group relative">
+                    <h3 class="text-base md:text-xl font-bold text-gray-400 mb-6 uppercase tracking-widest">Essentials</h3>
+                    <div class="flex items-baseline gap-2 mb-8 md:mb-10">
+                        <span class="text-5xl md:text-7xl font-black text-gray-900">৳0</span>
+                        <span class="text-gray-400 text-base md:text-lg font-bold">/event</span>
                     </div>
                     
-                    <ul class="space-y-6 mb-12">
-                        <li class="flex items-center gap-4 text-gray-600 font-bold">
-                            <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs">✓</span> Up to 50 Guests
+                    <ul class="space-y-4 md:space-y-6 mb-10 md:mb-12">
+                        <li class="flex items-center gap-4 text-gray-600 font-bold text-sm md:text-base">
+                            <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-[10px]">✓</span> Up to 50 Guests
                         </li>
-                        <li class="flex items-center gap-4 text-gray-600 font-bold">
-                            <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs">✓</span> Real-time Dashboard
+                        <li class="flex items-center gap-4 text-gray-600 font-bold text-sm md:text-base">
+                            <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-[10px]">✓</span> Real-time Dashboard
                         </li>
-                        <li class="flex items-center gap-4 text-gray-400 font-bold line-through">
+                        <li class="flex items-center gap-4 text-gray-400 font-bold line-through text-sm md:text-base">
                             <span>×</span> PDF/Excel Export
                         </li>
-                        <li class="flex items-center gap-4 text-gray-400 font-bold line-through">
+                        <li class="flex items-center gap-4 text-gray-400 font-bold line-through text-sm md:text-base">
                             <span>×</span> Multi-event Management
                         </li>
                     </ul>
 
-                    <Link :href="route('register')" class="block w-full py-5 text-center bg-gray-50 text-gray-900 font-black rounded-3xl hover:bg-gray-900 hover:text-white transition-all text-xl">
+                    <Link :href="route('register')" class="block w-full py-4 md:py-5 text-center bg-gray-50 text-gray-900 font-black rounded-2xl md:rounded-3xl hover:bg-gray-900 hover:text-white transition-all text-lg md:text-xl">
                         Start for Free
                     </Link>
                 </div>
 
                 <!-- Pro -->
-                <div class="p-12 bg-gray-900 rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(124,58,237,0.3)] relative overflow-hidden group transform hover:-translate-y-2 transition-all duration-500">
-                    <div class="absolute top-0 right-0 px-10 py-3 bg-purple-600 text-white text-xs font-black uppercase rounded-bl-[2rem] tracking-widest">
+                <div class="p-8 md:p-12 bg-gray-900 rounded-[3rem] md:rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(124,58,237,0.3)] relative overflow-hidden group transform hover:-translate-y-2 transition-all duration-500">
+                    <div class="absolute top-0 right-0 px-6 md:px-10 py-2 md:py-3 bg-purple-600 text-white text-[10px] font-black uppercase rounded-bl-[1.5rem] md:rounded-bl-[2rem] tracking-widest">
                         Most Popular
                     </div>
                     
-                    <h3 class="text-xl font-bold text-purple-400 mb-6 uppercase tracking-widest">Pro Celebration</h3>
-                    <div class="flex items-baseline gap-2 mb-10">
-                        <span class="text-7xl font-black text-white">৳199</span>
-                        <span class="text-gray-500 text-lg font-bold">/event</span>
+                    <h3 class="text-base md:text-xl font-bold text-purple-400 mb-6 uppercase tracking-widest">Pro Celebration</h3>
+                    <div class="flex items-baseline gap-2 mb-8 md:mb-10">
+                        <span class="text-5xl md:text-7xl font-black text-white">৳199</span>
+                        <span class="text-gray-500 text-base md:text-lg font-bold">/event</span>
                     </div>
                     
-                    <ul class="space-y-6 mb-12 text-white/90">
-                        <li class="flex items-center gap-4 font-bold">
-                            <span class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs text-bold">✓</span> Unlimited Guest Entry
+                    <ul class="space-y-4 md:space-y-6 mb-10 md:mb-12 text-white/90">
+                        <li class="flex items-center gap-4 font-bold text-sm md:text-base">
+                            <span class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-[10px] text-bold">✓</span> Unlimited Guest Entry
                         </li>
-                        <li class="flex items-center gap-4 font-bold">
-                            <span class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs text-bold">✓</span> PDF & Excel Export
+                        <li class="flex items-center gap-4 font-bold text-sm md:text-base">
+                            <span class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-[10px] text-bold">✓</span> PDF & Excel Export
                         </li>
-                        <li class="flex items-center gap-4 font-bold">
-                            <span class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs text-bold">✓</span> Advanced Analytics
+                        <li class="flex items-center gap-4 font-bold text-sm md:text-base">
+                            <span class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-[10px] text-bold">✓</span> Advanced Analytics
                         </li>
-                        <li class="flex items-center gap-4 font-bold">
-                            <span class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs text-bold">✓</span> Priority Support
+                        <li class="flex items-center gap-4 font-bold text-sm md:text-base">
+                            <span class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-[10px] text-bold">✓</span> Priority Support
                         </li>
                     </ul>
 
-                    <Link :href="route('register')" class="block w-full py-5 text-center bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black rounded-3xl shadow-xl hover:shadow-purple-500/40 transition-all text-xl">
+                    <Link :href="route('register')" class="block w-full py-4 md:py-5 text-center bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black rounded-2xl md:rounded-3xl shadow-xl hover:shadow-purple-500/40 transition-all text-lg md:text-xl">
                         Unlock Everything
                     </Link>
                 </div>
@@ -283,21 +283,21 @@ import { Head, Link } from '@inertiajs/vue3';
     </section>
 
     <!-- 🚀 FINAL CTA -->
-    <section class="py-32 px-6">
-      <div class="max-w-6xl mx-auto rounded-[5rem] bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-900 p-16 md:p-32 text-center text-white relative overflow-hidden shadow-3xl">
+    <section class="py-20 md:py-32 px-6">
+      <div class="max-w-6xl mx-auto rounded-[3.5rem] md:rounded-[5rem] bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-900 p-12 md:p-32 text-center text-white relative overflow-hidden shadow-3xl">
           <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]"></div>
           <div class="absolute -top-20 -left-20 w-80 h-80 bg-purple-600 blur-[120px] opacity-20"></div>
           <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-indigo-600 blur-[120px] opacity-20"></div>
           
-          <h2 class="text-5xl md:text-7xl font-black mb-10 relative z-10 leading-tight">
-            Ready to make your <br />wedding stress-free?
+          <h2 class="text-3xl md:text-7xl font-black mb-8 md:mb-10 relative z-10 leading-tight">
+            Ready to make your <br class="sm:hidden" /> wedding stress-free?
           </h2>
-          <p class="text-2xl text-purple-200/80 mb-16 relative z-10 max-w-2xl mx-auto font-medium">
+          <p class="text-lg md:text-2xl text-purple-200/80 mb-12 md:mb-16 relative z-10 max-w-2xl mx-auto font-medium">
             Join thousands of happy couples who trusted SP Tech BD with their special day.
           </p>
 
           <Link :href="route('register')"
-             class="relative z-10 inline-block px-16 py-6 bg-white text-gray-900 rounded-[2rem] font-black text-2xl shadow-[0_20px_50px_rgba(255,255,255,0.2)] hover:bg-gray-50 transition-all hover:scale-105 active:scale-95">
+             class="relative z-10 inline-block px-10 md:px-16 py-5 md:py-6 bg-white text-gray-900 rounded-[1.5rem] md:rounded-[2rem] font-black text-xl md:text-2xl shadow-[0_20px_50px_rgba(255,255,255,0.2)] hover:bg-gray-50 transition-all hover:scale-105 active:scale-95">
             Create Your Account
           </Link>
       </div>
