@@ -340,11 +340,9 @@ import { Head, Link } from '@inertiajs/vue3';
             
             <div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-purple-50 gap-6">
                 <div class="text-gray-400 text-sm font-black uppercase tracking-[0.2em]">
-                    © 2026 SP Tech BD. All Rights Reserved.
-                </div>
-                <div class="flex gap-6">
-                    <a href="https://sauravpal.xyz/" target="_blank" class="text-purple-600 font-black hover:underline">Saurav Pal</a>
-                </div>
+                  © SP Tech BD 2026. All Rights Reserved. Developed by  <a href="https://sauravpal.xyz/" target="_blank" class="text-purple-600 font-black hover:underline">Saurav Pal</a>
+               
+          
             </div>
         </div>
     </footer>
